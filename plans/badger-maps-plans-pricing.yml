@@ -1,0 +1,240 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Badger Maps
+providerId: badger-maps
+created: '2026-07-04'
+modified: '2026-07-04'
+reconciled: false
+tags:
+- Field Sales
+- Route Planning
+- CRM
+- Sales Enablement
+- Plans
+description: >-
+  Badger Maps is sold as a per-user monthly subscription with two core tiers -
+  Business and Enterprise - each billed per user, with a discount for annual
+  commitment. Both core tiers include API/Developer Key access, capped at 25,000
+  requests per day per team; the key must be enabled by contacting Badger Maps
+  support. Badger also sells add-on products (Align territory management, Lead
+  Routing, Insights, and Scoreboard) that are priced separately per user, per
+  rep, or per territory. There is no separate metered charge for API calls
+  beyond the daily request cap - API access rides on the seat subscription.
+notes: >-
+  Prices captured from the public Badger Maps pricing page on 2026-07-04 and may
+  change. Annual pricing is the lower per-user monthly figure billed yearly;
+  monthly pricing is the higher month-to-month figure. Verify current rates and
+  add-on minimums on the pricing page during reconciliation.
+sources:
+- https://www.badgermapping.com/pricing/
+- https://www.badgermapping.com/features/
+- https://badgerupdatedapi.docs.apiary.io/
+plans:
+- id: badger-business
+  name: Business
+  type: paid
+  description: >-
+    Core per-user plan with route planning, mapping, check-ins, reporting, CRM
+    integrations, and API/Developer Key access (max 25k requests/day per team).
+  entries:
+  - label: Per User (Annual)
+    name: business_annual
+    type: flat
+    metric: seat
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '58'
+    currency: USD
+    userMultiplied: true
+  - label: Per User (Monthly)
+    name: business_monthly
+    type: flat
+    metric: seat
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '69'
+    currency: USD
+    userMultiplied: true
+  - label: API Requests
+    name: business_api_requests
+    type: usage
+    metric: requests
+    limit: 25000
+    timeFrame: day
+    geo: global
+    unit: 1
+    price: included (per team)
+    userMultiplied: false
+  elements:
+  - name: Route Optimization
+  - name: Account Mapping and Filtering
+  - name: Check-Ins
+  - name: CRM Integrations
+  - name: API / Developer Key Access
+- id: badger-enterprise
+  name: Enterprise
+  type: paid
+  description: >-
+    Higher per-user plan adding advanced management, data services, and support
+    on top of the Business feature set, including API/Developer Key access.
+  entries:
+  - label: Per User (Annual)
+    name: enterprise_annual
+    type: flat
+    metric: seat
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '95'
+    currency: USD
+    userMultiplied: true
+  - label: Per User (Monthly)
+    name: enterprise_monthly
+    type: flat
+    metric: seat
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '109'
+    currency: USD
+    userMultiplied: true
+  - label: API Requests
+    name: enterprise_api_requests
+    type: usage
+    metric: requests
+    limit: 25000
+    timeFrame: day
+    geo: global
+    unit: 1
+    price: included (per team)
+    userMultiplied: false
+  elements:
+  - name: Everything in Business
+  - name: Advanced Management and Reporting
+  - name: Data Services
+  - name: Priority Support
+  - name: API / Developer Key Access
+- id: badger-align
+  name: Badger Align (Add-On)
+  type: paid
+  description: >-
+    Territory management and alignment add-on, priced per territory with a
+    5-territory minimum; the per-territory rate drops above 40 territories.
+  entries:
+  - label: Per Territory (Annual)
+    name: align_territory
+    type: flat
+    metric: territory
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '20'
+    currency: USD
+    userMultiplied: false
+  elements:
+  - name: Territory Alignment
+  - name: Volume Discount Above 40 Territories ($10)
+- id: badger-lead-routing
+  name: Badger Lead Routing (Add-On)
+  type: paid
+  description: >-
+    Inbound lead assignment and routing add-on, priced per rep with a 5-rep
+    minimum; the per-rep rate drops above 40 reps.
+  entries:
+  - label: Per Rep (Annual)
+    name: lead_routing_rep_annual
+    type: flat
+    metric: seat
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '16'
+    currency: USD
+    userMultiplied: true
+  - label: Per Rep (Monthly)
+    name: lead_routing_rep_monthly
+    type: flat
+    metric: seat
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '18'
+    currency: USD
+    userMultiplied: true
+  elements:
+  - name: Lead Assignment
+  - name: Volume Discount Above 40 Reps ($10)
+- id: badger-insights
+  name: Badger Insights (Add-On)
+  type: paid
+  description: Analytics and insights add-on, priced per user.
+  entries:
+  - label: Per User (Annual)
+    name: insights_annual
+    type: flat
+    metric: seat
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '50'
+    currency: USD
+    userMultiplied: true
+  - label: Per User (Monthly)
+    name: insights_monthly
+    type: flat
+    metric: seat
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '60'
+    currency: USD
+    userMultiplied: true
+  elements:
+  - name: Advanced Analytics
+- id: badger-scoreboard
+  name: Badger Scoreboard (Add-On)
+  type: paid
+  description: >-
+    Rep performance leaderboard add-on, priced per user with a 5-user minimum;
+    the per-user rate drops above 40 users.
+  entries:
+  - label: Per User (Annual)
+    name: scoreboard_annual
+    type: flat
+    metric: seat
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '12'
+    currency: USD
+    userMultiplied: true
+  - label: Per User (Monthly)
+    name: scoreboard_monthly
+    type: flat
+    metric: seat
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '14'
+    currency: USD
+    userMultiplied: true
+  elements:
+  - name: Performance Leaderboard
+  - name: Volume Discount Above 40 Users ($8)
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

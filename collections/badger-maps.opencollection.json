@@ -1,0 +1,152 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Badger Maps API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "apikey": {
+        "key": "Authorization",
+        "value": "Token {{apiKey}}",
+        "in": "header"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": { "name": "Users", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Authenticate (login).", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://badgerapis.badgermapping.com/api/2/login/",
+            "body": { "type": "form", "data": "username=&password=" }
+          },
+          "docs": "Exchanges username and password for an API token."
+        },
+        {
+          "info": { "name": "Get profile.", "type": "http" },
+          "http": { "method": "GET", "url": "https://badgerapis.badgermapping.com/api/2/profiles/" },
+          "docs": "Retrieves the authenticated user's profile, company info, and account datafield schema."
+        },
+        {
+          "info": { "name": "Search users.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://badgerapis.badgermapping.com/api/2/search/users/?q=",
+            "params": [{ "name": "q", "value": "", "type": "query", "description": "Email or user ID to search for." }]
+          },
+          "docs": "Searches managed users by email or user ID."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Accounts", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List accounts.", "type": "http" },
+          "http": { "method": "GET", "url": "https://badgerapis.badgermapping.com/api/2/customers/" },
+          "docs": "Lists accounts (customers) owned by the authenticated user."
+        },
+        {
+          "info": { "name": "Create account.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://badgerapis.badgermapping.com/api/2/customers/",
+            "body": { "type": "json", "data": "{\n  \"last_name\": \"Acme Hardware\",\n  \"address\": \"1 Market St, San Francisco, CA\",\n  \"account_owner\": 0\n}" }
+          },
+          "docs": "Creates a new account. Requires last_name, address, and account_owner."
+        },
+        {
+          "info": { "name": "Retrieve account.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://badgerapis.badgermapping.com/api/2/customers/:account_id/",
+            "params": [{ "name": "account_id", "value": "", "type": "path", "description": "The account (customer) id." }]
+          },
+          "docs": "Retrieves a single account with its locations and custom fields."
+        },
+        {
+          "info": { "name": "Update account.", "type": "http" },
+          "http": {
+            "method": "PATCH",
+            "url": "https://badgerapis.badgermapping.com/api/2/customers/:account_id/",
+            "params": [{ "name": "account_id", "value": "", "type": "path", "description": "The account (customer) id." }],
+            "body": { "type": "json", "data": "{\n  \"custom_text\": {}\n}" }
+          },
+          "docs": "Partially updates an account (custom fields, account_owner, etc.)."
+        },
+        {
+          "info": { "name": "Delete account.", "type": "http" },
+          "http": {
+            "method": "DELETE",
+            "url": "https://badgerapis.badgermapping.com/api/2/customers/:account_id/",
+            "params": [{ "name": "account_id", "value": "", "type": "path", "description": "The account (customer) id." }]
+          },
+          "docs": "Deletes an account. Returns 204 No Content."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Locations", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Update location.", "type": "http" },
+          "http": {
+            "method": "PATCH",
+            "url": "https://badgerapis.badgermapping.com/api/2/locations/:location_id/",
+            "params": [{ "name": "location_id", "value": "", "type": "path", "description": "The location id." }],
+            "body": { "type": "json", "data": "{\n  \"address\": \"500 Howard St, San Francisco, CA\"\n}" }
+          },
+          "docs": "Updates a location on an account. Address required; lat/lng optional."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Check-Ins", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List check-ins.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://badgerapis.badgermapping.com/api/2/appointments/?customer_id=",
+            "params": [{ "name": "customer_id", "value": "", "type": "query", "description": "The account (customer) id to return check-ins for." }]
+          },
+          "docs": "Lists check-ins recorded against an account (served under /appointments/)."
+        },
+        {
+          "info": { "name": "Create check-in.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://badgerapis.badgermapping.com/api/2/appointments/",
+            "body": { "type": "json", "data": "{\n  \"customer\": 0,\n  \"type\": \"Visit\",\n  \"comments\": \"Dropped off samples.\"\n}" }
+          },
+          "docs": "Records a new check-in against an account. Requires the customer (account) id."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Routes", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List routes.", "type": "http" },
+          "http": { "method": "GET", "url": "https://badgerapis.badgermapping.com/api/2/routes/" },
+          "docs": "Lists the authenticated user's routes."
+        },
+        {
+          "info": { "name": "Retrieve route.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://badgerapis.badgermapping.com/api/2/routes/:route_id/",
+            "params": [{ "name": "route_id", "value": "", "type": "path", "description": "The route id." }]
+          },
+          "docs": "Retrieves a route with its ordered waypoints."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

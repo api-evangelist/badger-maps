@@ -1,0 +1,106 @@
+aid: badger-maps
+name: Badger Maps
+review:
+  question: Does Badger Maps expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-04'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Badger Maps' documented API surface (the
+    v2 REST API at https://badgerapis.badgermapping.com/api/2) is pure
+    request/response REST over HTTPS with token authentication. There is no
+    server-push transport (WebSocket or SSE) documented on Badger's own API to
+    model. Event-style delivery to third parties is handled out-of-band via
+    Zapier triggers (New Account, New Check-in, Account Updated) and CRM
+    integrations, which carry their own protocols and are out of scope for a
+    Badger Maps AsyncAPI document.
+findings:
+  summary: |
+    Badger Maps does not publish a documented public WebSocket API. Badger Maps
+    is field sales route-planning and CRM software. It exposes a
+    token-authenticated REST API (base https://badgerapis.badgermapping.com/api/2)
+    documented as an API Blueprint on Apiary. Authentication is via an
+    `Authorization: Token <api_key>` header; the API/Developer Key must be
+    enabled by contacting Badger Maps support and is capped at 25,000 requests
+    per day per team. The documented resources are users (login, profiles,
+    user search), accounts (customers CRUD), account locations (update),
+    check-ins (the /appointments/ resource - list and create), and routes
+    (list and retrieve with waypoints). All are request/response REST over
+    HTTPS. No realtime, bidirectional, or streaming WebSocket (ws:// or wss://)
+    endpoint is documented anywhere in Badger's API materials. Near-realtime
+    outbound events are delivered through Zapier and CRM integrations, not a
+    Badger WebSocket.
+  accessModel: |
+    The API is gated but documented: endpoint paths, methods, and core fields
+    are published in Badger's Apiary API Blueprint, but a working API/Developer
+    Key must be turned on by Badger Maps support (support@badgermapping.com)
+    before requests are accepted, and access is included only with paid
+    Business/Enterprise seats. Endpoints in this catalog are therefore treated
+    as endpointsConfirmed (documented), with a small number of parameters and
+    fields modeled where the public Blueprint is thin.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://badgerapis.badgermapping.com/api/2
+      documented: true
+      note: Token-authenticated v2 REST API documented on Apiary. All request/response over HTTPS.
+    - protocol: Webhook
+      scheme: https
+      documented: partial
+      note: Outbound events (New Account, New Check-in, Account Updated) are surfaced via Zapier and CRM integrations rather than a first-party public webhook spec.
+    - protocol: SSE
+      scheme: https
+      documented: false
+      note: No Server-Sent Events stream is documented on Badger's API.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in Badger Maps' API Blueprint or product materials as of the review date.
+  endpointsConfirmedRest:
+    - POST   https://badgerapis.badgermapping.com/api/2/login/
+    - GET    https://badgerapis.badgermapping.com/api/2/profiles/
+    - GET    https://badgerapis.badgermapping.com/api/2/search/users/?q={query}
+    - GET    https://badgerapis.badgermapping.com/api/2/customers/
+    - POST   https://badgerapis.badgermapping.com/api/2/customers/
+    - GET    https://badgerapis.badgermapping.com/api/2/customers/{account_id}/
+    - PATCH  https://badgerapis.badgermapping.com/api/2/customers/{account_id}/
+    - DELETE https://badgerapis.badgermapping.com/api/2/customers/{account_id}/
+    - PATCH  https://badgerapis.badgermapping.com/api/2/locations/{location_id}/
+    - GET    https://badgerapis.badgermapping.com/api/2/appointments/?customer_id={id}
+    - POST   https://badgerapis.badgermapping.com/api/2/appointments/
+    - GET    https://badgerapis.badgermapping.com/api/2/routes/
+    - GET    https://badgerapis.badgermapping.com/api/2/routes/{route_id}/
+  endpointsModeled:
+    - note: The 'rn' query parameter on GET /customers/ (scope to a managed user), waypoint timing fields on GET /routes/{id}/, and profile settings object are modeled where the public Blueprint is thin. No additional endpoints were invented.
+sources:
+  - url: https://badgerupdatedapi.docs.apiary.io/
+    type: Documentation
+    note: Badger Maps API Blueprint on Apiary - base URL, token auth, and all endpoints below.
+  - url: https://badgerupdatedapi.docs.apiary.io/#reference/accounts
+    type: APIReference
+    note: Accounts (customers) CRUD under /customers/.
+  - url: https://badgerupdatedapi.docs.apiary.io/#reference/check-ins
+    type: APIReference
+    note: Check-ins served under the /appointments/ resource (list/create).
+  - url: https://badgerupdatedapi.docs.apiary.io/#reference/routes
+    type: APIReference
+    note: Routes list and retrieve with waypoints.
+  - url: https://www.badgermapping.com/pricing/
+    type: Pricing
+    note: Per-user Business/Enterprise pricing; API/Developer Key access max 25k requests/day per team.
+  - url: https://www.badgermapping.com/knowledgebase/how-to-use-zapier-and-badger-maps-integration/
+    type: Documentation
+    note: Zapier triggers/actions (New Account, New Check-in, Account Updated) - outbound events, not a WebSocket.
+  - url: https://github.com/BadgerMaps
+    type: SourceCode
+    note: Official Badger Maps GitHub organization.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists. Badger Maps' documented API is
+    request/response REST (token-authenticated v2 API on Apiary). No AsyncAPI
+    document was created because there is no server-push transport on Badger's
+    own API to model; near-realtime event delivery to third parties happens
+    through Zapier and CRM integrations that carry their own protocols.

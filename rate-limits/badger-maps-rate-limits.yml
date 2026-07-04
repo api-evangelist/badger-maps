@@ -1,0 +1,61 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Badger Maps
+providerId: badger-maps
+created: '2026-07-04'
+modified: '2026-07-04'
+reconciled: false
+tags:
+- Field Sales
+- Route Planning
+- CRM
+- Rate Limiting
+- Quotas
+description: >-
+  Badger Maps publishes one headline API quota: API/Developer Key access allows
+  a maximum of 25,000 requests per day, per team. This is a daily volume cap
+  shared across all users on a team's account rather than a documented
+  per-user or per-second burst limit. The API/Developer Key must be enabled by
+  contacting Badger Maps support before it will accept requests. Finer-grained
+  per-second/per-minute throttles or a documented 429 back-off contract are not
+  published in the public API Blueprint and would need to be confirmed against
+  live response headers with an enabled key.
+notes: >-
+  The 25k/day/team figure is stated on the Badger Maps pricing/features pages.
+  Per-second burst behavior and any Retry-After semantics are modeled as
+  standard REST practice and should be verified with an enabled key during
+  reconciliation.
+sources:
+- https://www.badgermapping.com/pricing/
+- https://www.badgermapping.com/features/
+- https://badgerupdatedapi.docs.apiary.io/
+responseCodes:
+  throttled: 429
+limits:
+- name: Daily API Requests
+  scope: team
+  metric: requests
+  limit: 25000
+  timeFrame: day
+  notes: Maximum 25,000 API requests per day, shared across the team. Stated on the pricing page.
+- name: Burst / Per-Second Rate
+  scope: account
+  metric: requests
+  limit: not published
+  notes: No documented per-second or per-minute burst limit in the public API Blueprint (modeled as unspecified).
+- name: API Key Enablement
+  scope: account
+  metric: access
+  limit: gated
+  notes: The API/Developer Key must be enabled by Badger Maps support before requests are accepted.
+policies:
+- name: Daily Quota Reset
+  description: The 25k request allowance is a per-day cap per team; plan integrations to stay within the daily budget.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on any 429 responses (modeled - verify headers with an enabled key).
+- name: Token Authentication
+  description: All requests must carry an Authorization Token header; unauthenticated or unenabled keys are rejected.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,171 @@
+{
+  "info": {
+    "name": "Badger Maps API",
+    "description": "REST API for Badger Maps field sales route-planning and CRM software. Manage accounts (customers), account locations, optimized routes, check-ins (served under /appointments/), and users. Base URL: https://badgerapis.badgermapping.com/api/2. All requests use token auth via an `Authorization: Token <api_key>` header; the API/Developer Key must be enabled by Badger Maps support and is capped at 25k requests/day per team.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      { "key": "key", "value": "Authorization", "type": "string" },
+      { "key": "value", "value": "Token {{apiKey}}", "type": "string" },
+      { "key": "in", "value": "header", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://badgerapis.badgermapping.com/api/2", "type": "string" },
+    { "key": "apiKey", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Authenticate (login)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/x-www-form-urlencoded" }],
+            "body": { "mode": "urlencoded", "urlencoded": [
+              { "key": "username", "value": "" },
+              { "key": "password", "value": "" }
+            ] },
+            "url": { "raw": "{{baseUrl}}/login/", "host": ["{{baseUrl}}"], "path": ["login", ""] },
+            "description": "Exchanges username and password for an API token."
+          }
+        },
+        {
+          "name": "Get profile",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/profiles/", "host": ["{{baseUrl}}"], "path": ["profiles", ""] },
+            "description": "Retrieves the authenticated user's profile, company info, and account datafield schema."
+          }
+        },
+        {
+          "name": "Search users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/search/users/?q=", "host": ["{{baseUrl}}"], "path": ["search", "users", ""], "query": [{ "key": "q", "value": "" }] },
+            "description": "Searches managed users by email or user ID."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Accounts",
+      "item": [
+        {
+          "name": "List accounts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/customers/", "host": ["{{baseUrl}}"], "path": ["customers", ""] },
+            "description": "Lists accounts (customers) owned by the authenticated user."
+          }
+        },
+        {
+          "name": "Create account",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"last_name\": \"Acme Hardware\",\n  \"address\": \"1 Market St, San Francisco, CA\",\n  \"account_owner\": 0,\n  \"email\": \"buyer@example.com\",\n  \"phone_number\": \"+14155551234\"\n}" },
+            "url": { "raw": "{{baseUrl}}/customers/", "host": ["{{baseUrl}}"], "path": ["customers", ""] },
+            "description": "Creates a new account. Requires last_name, address, and account_owner."
+          }
+        },
+        {
+          "name": "Retrieve account",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/customers/:account_id/", "host": ["{{baseUrl}}"], "path": ["customers", ":account_id", ""], "variable": [{ "key": "account_id", "value": "" }] },
+            "description": "Retrieves a single account with its locations and custom fields."
+          }
+        },
+        {
+          "name": "Update account",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"custom_text\": {}\n}" },
+            "url": { "raw": "{{baseUrl}}/customers/:account_id/", "host": ["{{baseUrl}}"], "path": ["customers", ":account_id", ""], "variable": [{ "key": "account_id", "value": "" }] },
+            "description": "Partially updates an account (custom fields, account_owner, etc.)."
+          }
+        },
+        {
+          "name": "Delete account",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/customers/:account_id/", "host": ["{{baseUrl}}"], "path": ["customers", ":account_id", ""], "variable": [{ "key": "account_id", "value": "" }] },
+            "description": "Deletes an account. Returns 204 No Content."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Locations",
+      "item": [
+        {
+          "name": "Update location",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"address\": \"500 Howard St, San Francisco, CA\"\n}" },
+            "url": { "raw": "{{baseUrl}}/locations/:location_id/", "host": ["{{baseUrl}}"], "path": ["locations", ":location_id", ""], "variable": [{ "key": "location_id", "value": "" }] },
+            "description": "Updates a location on an account. Address required; lat/lng optional."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Check-Ins",
+      "item": [
+        {
+          "name": "List check-ins",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/appointments/?customer_id=", "host": ["{{baseUrl}}"], "path": ["appointments", ""], "query": [{ "key": "customer_id", "value": "" }] },
+            "description": "Lists check-ins recorded against an account."
+          }
+        },
+        {
+          "name": "Create check-in",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"customer\": 0,\n  \"type\": \"Visit\",\n  \"comments\": \"Dropped off samples.\"\n}" },
+            "url": { "raw": "{{baseUrl}}/appointments/", "host": ["{{baseUrl}}"], "path": ["appointments", ""] },
+            "description": "Records a new check-in against an account. Requires the customer (account) id."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Routes",
+      "item": [
+        {
+          "name": "List routes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/routes/", "host": ["{{baseUrl}}"], "path": ["routes", ""] },
+            "description": "Lists the authenticated user's routes."
+          }
+        },
+        {
+          "name": "Retrieve route",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/routes/:route_id/", "host": ["{{baseUrl}}"], "path": ["routes", ":route_id", ""], "variable": [{ "key": "route_id", "value": "" }] },
+            "description": "Retrieves a route with its ordered waypoints."
+          }
+        }
+      ]
+    }
+  ]
+}

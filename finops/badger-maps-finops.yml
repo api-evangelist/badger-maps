@@ -1,0 +1,102 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Badger Maps
+providerId: badger-maps
+created: '2026-07-04'
+modified: '2026-07-04'
+reconciled: false
+tags:
+- Field Sales
+- Route Planning
+- CRM
+- Sales Enablement
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Badger Maps spend. Badger Maps is a per-user SaaS subscription:
+  cost is driven primarily by the number of seats on the Business or Enterprise
+  plan (billed monthly or annually per user), plus any add-on products (Align,
+  Lead Routing, Insights, Scoreboard) which are billed separately per user, per
+  rep, or per territory. API/Developer Key access is included in the seat price
+  with no separate per-call charge; the only API-side constraint is a
+  25,000-request-per-day-per-team quota, so API cost is effectively fixed within
+  the subscription rather than usage-metered. The dominant lever for spend is
+  seat count and add-on adoption, not API traffic.
+notes: >-
+  Per-user rates captured 2026-07-04 from the public pricing page and not
+  reconciled against a signed order form. Annual commitments lower the effective
+  per-user monthly rate; add-ons carry seat/territory minimums with volume
+  discounts. Verify current pricing during reconciliation.
+sources:
+- https://www.badgermapping.com/pricing/
+- https://www.badgermapping.com/features/
+- https://badgerupdatedapi.docs.apiary.io/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Badger Maps
+serviceCategory: Field Sales and Route Planning Software
+billingModel:
+  pricingCategory: Subscription-Based
+  billingFrequency: Monthly or Annual
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Usage
+  - Adjustment
+focusColumns:
+  ServiceName: Badger Maps
+  ServiceCategory: Field Sales and Route Planning Software
+  ProviderName: Badger Maps
+  PublisherName: Badger Maps
+  InvoiceIssuerName: Badger Maps
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription-Based
+meters:
+- name: seats
+  description: Number of user seats on the Business or Enterprise plan, billed per user per month.
+  unit: seats
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+  - team
+- name: addon_seats
+  description: Seats/reps/users on add-on products (Lead Routing, Insights, Scoreboard), billed per user or per rep.
+  unit: seats
+  aggregation: sum
+  dimensions:
+  - account
+  - addon
+- name: territories
+  description: Territories on the Badger Align add-on, billed per territory per month.
+  unit: territories
+  aggregation: sum
+  dimensions:
+  - account
+  - addon
+- name: api_requests
+  description: API requests against the daily 25k-per-team quota; included in the seat price with no per-call charge.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - team
+principles:
+- name: Visibility
+  description: Track active seat count per plan and per add-on; monitor daily API request volume against the 25k/day/team cap.
+- name: Allocation
+  description: Map seats and add-on subscriptions to teams/territories so subscription cost lands on the right cost center.
+- name: Optimization
+  description: Right-size seat count to active reps, choose annual billing for the lower per-user rate, and adopt add-ons only where they earn their keep; consolidate integrations to stay inside the included daily API quota.
+- name: Accountability
+  description: Assign an owner per team subscription and review seat/add-on counts each renewal against actual field-rep headcount.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

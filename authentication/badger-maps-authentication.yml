@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/badger-maps-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: tokenAuth
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: 'Token authentication. Send `Authorization: Token <api_key>`. Contact Badger
+    Maps support to have your API/Developer Key enabled.'
+  sources:
+  - openapi/badger-maps-openapi.yml

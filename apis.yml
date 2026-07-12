@@ -136,6 +136,10 @@ apis:
     for managed users by email or ID. User IDs are required to own accounts and
     scope routes and check-ins across a managed team.
 common:
+- type: DomainSecurity
+  url: security/badger-maps-domain-security.yml
+- type: Authentication
+  url: authentication/badger-maps-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/BadgerMaps
 - type: LinkedIn

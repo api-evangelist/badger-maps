@@ -1,0 +1,108 @@
+openapi: 3.0.3
+info:
+  title: Badger Maps Accounts Locations API
+  description: 'REST API for Badger Maps, field sales route-planning and CRM software. The API lets teams programmatically manage accounts (customers), account locations, optimized routes, check-ins (served under the /appointments/ resource), and users. Base URL: https://badgerapis.badgermapping.com/api/2. All requests are authenticated with a token supplied in an `Authorization: Token <api_key>` header. API/Developer Key access is included with paid plans (max 25k requests per day, per team); the key must be enabled by contacting Badger Maps support (support@badgermapping.com).
+
+    Endpoint paths, methods, and the core request/response fields below are grounded in Badger Maps'' published API Blueprint (Apiary). Fields marked "modeled" in descriptions are reasonable inferences where the public docs are thin and require an enabled key to verify exhaustively.'
+  version: '2.0'
+  contact:
+    name: Badger Maps Support
+    url: https://support.badgermapping.com
+    email: support@badgermapping.com
+servers:
+- url: https://badgerapis.badgermapping.com/api/2
+  description: Badger Maps API v2
+security:
+- tokenAuth: []
+tags:
+- name: Locations
+  description: Physical, geocoded locations attached to an account.
+paths:
+  /locations/{location_id}/:
+    parameters:
+    - $ref: '#/components/parameters/LocationId'
+    patch:
+      operationId: updateLocation
+      tags:
+      - Locations
+      summary: Update an account location
+      description: Updates a location attached to an account. An address is required; latitude/longitude may be supplied to override Badger's geocoding.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationInput'
+      responses:
+        '200':
+          description: The updated location.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Unauthorized:
+      description: Authentication is missing or the token is invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Location:
+      type: object
+      properties:
+        id:
+          type: integer
+        address:
+          type: string
+        lat:
+          type: number
+          format: float
+        lng:
+          type: number
+          format: float
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+        status:
+          type: integer
+    LocationInput:
+      type: object
+      required:
+      - address
+      properties:
+        address:
+          type: string
+        lat:
+          type: number
+          format: float
+        lng:
+          type: number
+          format: float
+  parameters:
+    LocationId:
+      name: location_id
+      in: path
+      required: true
+      description: The location id.
+      schema:
+        type: integer
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Token authentication. Send `Authorization: Token <api_key>`. Contact Badger Maps support to have your API/Developer Key enabled.'

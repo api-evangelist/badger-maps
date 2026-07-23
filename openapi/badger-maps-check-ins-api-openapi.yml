@@ -1,0 +1,128 @@
+openapi: 3.0.3
+info:
+  title: Badger Maps Accounts Check-Ins API
+  description: 'REST API for Badger Maps, field sales route-planning and CRM software. The API lets teams programmatically manage accounts (customers), account locations, optimized routes, check-ins (served under the /appointments/ resource), and users. Base URL: https://badgerapis.badgermapping.com/api/2. All requests are authenticated with a token supplied in an `Authorization: Token <api_key>` header. API/Developer Key access is included with paid plans (max 25k requests per day, per team); the key must be enabled by contacting Badger Maps support (support@badgermapping.com).
+
+    Endpoint paths, methods, and the core request/response fields below are grounded in Badger Maps'' published API Blueprint (Apiary). Fields marked "modeled" in descriptions are reasonable inferences where the public docs are thin and require an enabled key to verify exhaustively.'
+  version: '2.0'
+  contact:
+    name: Badger Maps Support
+    url: https://support.badgermapping.com
+    email: support@badgermapping.com
+servers:
+- url: https://badgerapis.badgermapping.com/api/2
+  description: Badger Maps API v2
+security:
+- tokenAuth: []
+tags:
+- name: Check-Ins
+  description: Timestamped activity logs recorded against an account (the /appointments/ resource).
+paths:
+  /appointments/:
+    get:
+      operationId: listCheckIns
+      tags:
+      - Check-Ins
+      summary: List check-ins
+      description: Returns the check-ins recorded against an account. Filter by account with the `customer_id` query parameter.
+      parameters:
+      - name: customer_id
+        in: query
+        required: false
+        description: The account (customer) id to return check-ins for.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A list of check-ins.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CheckIn'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createCheckIn
+      tags:
+      - Check-Ins
+      summary: Create a check-in
+      description: Records a new check-in against an account. Requires the account (customer) id; a type and free-text comments are optional.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckInInput'
+      responses:
+        '201':
+          description: The created check-in.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckIn'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Authentication is missing or the token is invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was invalid or missing required fields.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    CheckInInput:
+      type: object
+      required:
+      - customer
+      properties:
+        customer:
+          type: integer
+          description: The account (customer) id to log the check-in against.
+        type:
+          type: string
+        comments:
+          type: string
+    CheckIn:
+      type: object
+      description: A check-in log against an account (served under /appointments/).
+      properties:
+        id:
+          type: integer
+        customer:
+          type: integer
+          description: The account (customer) id the check-in belongs to.
+        type:
+          type: string
+          description: Check-in type.
+        comments:
+          type: string
+        log_datetime:
+          type: string
+          format: date-time
+        created_by:
+          type: integer
+          description: User id of the check-in author.
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+        status:
+          type: integer
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Token authentication. Send `Authorization: Token <api_key>`. Contact Badger Maps support to have your API/Developer Key enabled.'

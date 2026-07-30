@@ -11,7 +11,20 @@ description: Badger Maps is field sales route planning, mapping, and CRM softwar
   data with CRMs and other systems. API/Developer Key access is included with paid
   plans (max 25k requests per day, per team); the key must be enabled by contacting
   Badger Maps support.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/badger-maps.png
 tags:
 - Field Sales
 - Route Planning
@@ -25,116 +38,134 @@ specificationVersion: '0.19'
 apis:
 - aid: badger-maps:badger-maps-accounts-api
   name: Badger Maps Accounts API
+  description: Accounts (customers) - the businesses and contacts a rep maps and visits.
+  humanURL: https://badgerupdatedapi.docs.apiary.io/
+  baseURL: https://badgerapis.badgermapping.com/api/2
   tags:
   - Accounts
-  - Customers
-  - CRM
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://badgerupdatedapi.docs.apiary.io/
-  baseURL: https://badgerapis.badgermapping.com/api/2
   properties:
-  - url: https://badgerupdatedapi.docs.apiary.io/
-    type: Documentation
-  - url: https://badgerupdatedapi.docs.apiary.io/#reference/accounts
-    type: APIReference
-  - url: openapi/badger-maps-openapi.yml
-    type: OpenAPI
-  - url: collections/badger-maps.postman_collection.json
-    type: PostmanCollection
-  - url: collections/badger-maps.opencollection.json
-    type: OpenCollection
-  description: List, create, retrieve, update, and delete accounts (called customers
-    in the API) - the businesses and contacts a rep maps and visits. Accounts carry
-    name, address, contact details, geocoded location(s), an account owner, and
-    custom data fields, and are the primary object synced with CRMs.
-- aid: badger-maps:badger-maps-locations-api
-  name: Badger Maps Locations API
-  tags:
-  - Locations
-  - Geocoding
-  - Addresses
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://badgerupdatedapi.docs.apiary.io/
-  baseURL: https://badgerapis.badgermapping.com/api/2
-  properties:
-  - url: https://badgerupdatedapi.docs.apiary.io/#reference/locations
-    type: APIReference
-  - url: openapi/badger-maps-openapi.yml
-    type: OpenAPI
-  - url: collections/badger-maps.postman_collection.json
-    type: PostmanCollection
-  - url: collections/badger-maps.opencollection.json
-    type: OpenCollection
-  description: Update the physical locations attached to an account - an account can
-    have one or more addresses that Badger geocodes to latitude/longitude for mapping
-    and routing. Correcting an address or supplying explicit coordinates re-pins the
-    account on the map.
+  - type: OpenAPI
+    url: openapi/badger-maps-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://badgerupdatedapi.docs.apiary.io/
+  - type: APIReference
+    url: https://badgerupdatedapi.docs.apiary.io/#reference/accounts
+  - type: PostmanCollection
+    url: collections/badger-maps.postman_collection.json
+  - type: OpenCollection
+    url: collections/badger-maps.opencollection.json
+  - type: APIReference
+    url: https://badgerupdatedapi.docs.apiary.io/#reference/locations
+  - type: APIReference
+    url: https://badgerupdatedapi.docs.apiary.io/#reference/check-ins
+  - type: APIReference
+    url: https://badgerupdatedapi.docs.apiary.io/#reference/routes
+  - type: APIReference
+    url: https://badgerupdatedapi.docs.apiary.io/#reference/users
 - aid: badger-maps:badger-maps-check-ins-api
   name: Badger Maps Check-Ins API
+  description: Timestamped activity logs recorded against an account (the /appointments/ resource).
+  humanURL: https://badgerupdatedapi.docs.apiary.io/
+  baseURL: https://badgerapis.badgermapping.com/api/2
   tags:
   - Check-Ins
-  - Appointments
-  - Activity
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  properties:
+  - type: OpenAPI
+    url: openapi/badger-maps-check-ins-api-openapi.yml
+  - type: Documentation
+    url: https://badgerupdatedapi.docs.apiary.io/
+  - type: APIReference
+    url: https://badgerupdatedapi.docs.apiary.io/#reference/accounts
+  - type: PostmanCollection
+    url: collections/badger-maps.postman_collection.json
+  - type: OpenCollection
+    url: collections/badger-maps.opencollection.json
+  - type: APIReference
+    url: https://badgerupdatedapi.docs.apiary.io/#reference/locations
+  - type: APIReference
+    url: https://badgerupdatedapi.docs.apiary.io/#reference/check-ins
+  - type: APIReference
+    url: https://badgerupdatedapi.docs.apiary.io/#reference/routes
+  - type: APIReference
+    url: https://badgerupdatedapi.docs.apiary.io/#reference/users
+- aid: badger-maps:badger-maps-locations-api
+  name: Badger Maps Locations API
+  description: Physical, geocoded locations attached to an account.
   humanURL: https://badgerupdatedapi.docs.apiary.io/
   baseURL: https://badgerapis.badgermapping.com/api/2
+  tags:
+  - Locations
   properties:
-  - url: https://badgerupdatedapi.docs.apiary.io/#reference/check-ins
-    type: APIReference
-  - url: openapi/badger-maps-openapi.yml
-    type: OpenAPI
-  - url: collections/badger-maps.postman_collection.json
-    type: PostmanCollection
-  - url: collections/badger-maps.opencollection.json
-    type: OpenCollection
-  description: List and create check-ins (served under the /appointments/ resource) -
-    the timestamped logs a rep records against an account after a visit or call,
-    carrying a type, free-text comments, the author, and a log datetime. Check-ins
-    are the activity feed that powers reporting and CRM sync.
+  - type: OpenAPI
+    url: openapi/badger-maps-locations-api-openapi.yml
+  - type: Documentation
+    url: https://badgerupdatedapi.docs.apiary.io/
+  - type: APIReference
+    url: https://badgerupdatedapi.docs.apiary.io/#reference/accounts
+  - type: PostmanCollection
+    url: collections/badger-maps.postman_collection.json
+  - type: OpenCollection
+    url: collections/badger-maps.opencollection.json
+  - type: APIReference
+    url: https://badgerupdatedapi.docs.apiary.io/#reference/locations
+  - type: APIReference
+    url: https://badgerupdatedapi.docs.apiary.io/#reference/check-ins
+  - type: APIReference
+    url: https://badgerupdatedapi.docs.apiary.io/#reference/routes
+  - type: APIReference
+    url: https://badgerupdatedapi.docs.apiary.io/#reference/users
 - aid: badger-maps:badger-maps-routes-api
   name: Badger Maps Routes API
+  description: Optimized driving routes and their ordered waypoints.
+  humanURL: https://badgerupdatedapi.docs.apiary.io/
+  baseURL: https://badgerapis.badgermapping.com/api/2
   tags:
   - Routes
-  - Route Optimization
-  - Waypoints
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://badgerupdatedapi.docs.apiary.io/
-  baseURL: https://badgerapis.badgermapping.com/api/2
   properties:
-  - url: https://badgerupdatedapi.docs.apiary.io/#reference/routes
-    type: APIReference
-  - url: openapi/badger-maps-openapi.yml
-    type: OpenAPI
-  - url: collections/badger-maps.postman_collection.json
-    type: PostmanCollection
-  - url: collections/badger-maps.opencollection.json
-    type: OpenCollection
-  description: List a rep's optimized routes and retrieve a single route with its
-    ordered waypoints - each waypoint references an account location, its position in
-    the sequence, and timing details. Routes are the optimized driving plans Badger
-    generates across a set of accounts.
+  - type: OpenAPI
+    url: openapi/badger-maps-routes-api-openapi.yml
+  - type: Documentation
+    url: https://badgerupdatedapi.docs.apiary.io/
+  - type: APIReference
+    url: https://badgerupdatedapi.docs.apiary.io/#reference/accounts
+  - type: PostmanCollection
+    url: collections/badger-maps.postman_collection.json
+  - type: OpenCollection
+    url: collections/badger-maps.opencollection.json
+  - type: APIReference
+    url: https://badgerupdatedapi.docs.apiary.io/#reference/locations
+  - type: APIReference
+    url: https://badgerupdatedapi.docs.apiary.io/#reference/check-ins
+  - type: APIReference
+    url: https://badgerupdatedapi.docs.apiary.io/#reference/routes
+  - type: APIReference
+    url: https://badgerupdatedapi.docs.apiary.io/#reference/users
 - aid: badger-maps:badger-maps-users-api
   name: Badger Maps Users API
-  tags:
-  - Users
-  - Profiles
-  - Authentication
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  description: Authentication, the authenticated user profile, and user search.
   humanURL: https://badgerupdatedapi.docs.apiary.io/
   baseURL: https://badgerapis.badgermapping.com/api/2
+  tags:
+  - Users
   properties:
-  - url: https://badgerupdatedapi.docs.apiary.io/#reference/users
-    type: APIReference
-  - url: openapi/badger-maps-openapi.yml
-    type: OpenAPI
-  - url: collections/badger-maps.postman_collection.json
-    type: PostmanCollection
-  - url: collections/badger-maps.opencollection.json
-    type: OpenCollection
-  description: Authenticate a user to obtain an API token, retrieve the authenticated
-    user profile (company, settings, and the custom data-field schema), and search
-    for managed users by email or ID. User IDs are required to own accounts and
-    scope routes and check-ins across a managed team.
+  - type: OpenAPI
+    url: openapi/badger-maps-users-api-openapi.yml
+  - type: Documentation
+    url: https://badgerupdatedapi.docs.apiary.io/
+  - type: APIReference
+    url: https://badgerupdatedapi.docs.apiary.io/#reference/accounts
+  - type: PostmanCollection
+    url: collections/badger-maps.postman_collection.json
+  - type: OpenCollection
+    url: collections/badger-maps.opencollection.json
+  - type: APIReference
+    url: https://badgerupdatedapi.docs.apiary.io/#reference/locations
+  - type: APIReference
+    url: https://badgerupdatedapi.docs.apiary.io/#reference/check-ins
+  - type: APIReference
+    url: https://badgerupdatedapi.docs.apiary.io/#reference/routes
+  - type: APIReference
+    url: https://badgerupdatedapi.docs.apiary.io/#reference/users
 common:
 - type: AgenticAccess
   url: agentic-access/badger-maps-agentic-access.yml

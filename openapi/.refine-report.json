@@ -1,0 +1,22 @@
+{
+  "provider": "badger-maps",
+  "sources": [
+    "badger-maps-accounts-api-openapi.yml",
+    "badger-maps-check-ins-api-openapi.yml",
+    "badger-maps-locations-api-openapi.yml",
+    "badger-maps-routes-api-openapi.yml",
+    "badger-maps-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "badger-maps-accounts-api-openapi.yml",
+    "badger-maps-check-ins-api-openapi.yml",
+    "badger-maps-locations-api-openapi.yml",
+    "badger-maps-routes-api-openapi.yml",
+    "badger-maps-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

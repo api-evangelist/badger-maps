@@ -33,7 +33,7 @@ tags:
 - Sales Enablement
 - Territory Management
 created: '2026-07-04'
-modified: '2026-07-04'
+modified: '2026-08-13'
 specificationVersion: '0.19'
 apis:
 - aid: badger-maps:badger-maps-accounts-api
@@ -46,6 +46,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/badger-maps-accounts-api-openapi.yml
+  - type: Overlay
+    url: overlays/badger-maps-accounts-api-overlay.yaml
   - type: Documentation
     url: https://badgerupdatedapi.docs.apiary.io/
   - type: APIReference
@@ -72,6 +74,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/badger-maps-check-ins-api-openapi.yml
+  - type: Overlay
+    url: overlays/badger-maps-check-ins-api-overlay.yaml
   - type: Documentation
     url: https://badgerupdatedapi.docs.apiary.io/
   - type: APIReference
@@ -98,6 +102,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/badger-maps-locations-api-openapi.yml
+  - type: Overlay
+    url: overlays/badger-maps-locations-api-overlay.yaml
   - type: Documentation
     url: https://badgerupdatedapi.docs.apiary.io/
   - type: APIReference
@@ -124,6 +130,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/badger-maps-routes-api-openapi.yml
+  - type: Overlay
+    url: overlays/badger-maps-routes-api-overlay.yaml
   - type: Documentation
     url: https://badgerupdatedapi.docs.apiary.io/
   - type: APIReference
@@ -150,6 +158,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/badger-maps-users-api-openapi.yml
+  - type: Overlay
+    url: overlays/badger-maps-users-api-overlay.yaml
   - type: Documentation
     url: https://badgerupdatedapi.docs.apiary.io/
   - type: APIReference
@@ -189,6 +199,55 @@ common:
   url: finops/badger-maps-finops.yml
 - url: https://www.badgermapping.com/blog/
   type: Blog
+- type: APIBlueprint
+  url: openapi/_original/badger-maps-apiary-blueprint.apib
+- type: Webhooks
+  url: asyncapi/badger-maps-webhooks.yml
+- type: Conventions
+  url: conventions/badger-maps-conventions.yml
+- type: ErrorCatalog
+  url: errors/badger-maps-error-codes.yml
+- type: DataModel
+  url: data-model/badger-maps-data-model.yml
+- type: Lifecycle
+  url: lifecycle/badger-maps-lifecycle.yml
+- type: StatusPage
+  url: https://status.badgermapping.com/
+- type: Conformance
+  url: conformance/badger-maps-conformance.yml
+- type: Sandbox
+  url: sandbox/badger-maps-sandbox.yml
+- type: Packages
+  url: packages/badger-maps-packages.yml
+- type: MCPServer
+  url: mcp/badger-maps-mcp.yml
+- type: LLMsTxt
+  url: llms/badger-maps-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DeveloperPortal
+  url: https://badgerupdatedapi.docs.apiary.io/
+- type: APIReference
+  url: https://badgerupdatedapi.docs.apiary.io/#reference
+- type: GettingStarted
+  url: https://badgerupdatedapi.docs.apiary.io/#introduction/authorization
+- type: Support
+  url: https://www.badgermapping.com/support/
+- type: Pricing
+  url: https://www.badgermapping.com/pricing/
+- type: SignUp
+  url: https://www.badgermapping.com/free-trial/
+- type: Login
+  url: https://www.badgermapping.com/login/
+- type: TermsOfService
+  url: https://www.badgermapping.com/terms-of-use/
+- type: PrivacyPolicy
+  url: https://www.badgermapping.com/privacy-policy/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 22
+  pass: local-v1

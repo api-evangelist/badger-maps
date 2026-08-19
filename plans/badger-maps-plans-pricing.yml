@@ -1,3 +1,6 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.badgermapping.com/pricing/
 specification: API Commons Plans
 specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans

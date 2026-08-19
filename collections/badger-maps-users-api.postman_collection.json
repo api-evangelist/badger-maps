@@ -1,0 +1,506 @@
+{
+  "item": [
+    {
+      "id": "7b4a3475-6d9d-4426-9a90-ff1993b937a6",
+      "name": "Users",
+      "description": {
+        "content": "Authentication, the authenticated user profile, and user search.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "725e6e44-86cc-4051-862b-0b51e95fd8bb",
+          "name": "Authenticate and obtain an API token",
+          "request": {
+            "name": "Authenticate and obtain an API token",
+            "description": {
+              "content": "Exchanges a username and password for an API token that is then sent in the `Authorization: Token <api_key>` header on subsequent requests.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "login",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "username",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "password",
+                  "value": "<password>",
+                  "description": "(Required) "
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "62d2e388-1f5f-4587-82e0-254eb27e3afe",
+              "name": "Authentication succeeded; returns the token and user id.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "login",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "username",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "password",
+                      "value": "<password>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token\": \"string\",\n  \"status\": \"string\",\n  \"user_id\": 3138\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22a8c2cb-e8de-4378-ae09-efc32b3f2997",
+              "name": "Authentication is missing or the token is invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "login",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "username",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "password",
+                      "value": "<password>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"status\": 3011\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "19301d92-4f3e-49dc-aa3c-e6a10c5ef734",
+          "name": "Retrieve the authenticated user profile",
+          "request": {
+            "name": "Retrieve the authenticated user profile",
+            "description": {
+              "content": "Returns the profile of the authenticated user, including company info, profile settings, and the account custom data-field schema (datafields).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profiles",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f0d767f7-8137-482c-9f19-e09288637783",
+              "name": "The authenticated user's profile.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profiles",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 7636,\n  \"username\": \"string\",\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"email\": \"fkDqlV@fEOpmVeRxcpcpVBwwUvpgFZO.ti\",\n  \"company\": {\n    \"key_0\": 6750.897678588779,\n    \"key_1\": 1865\n  },\n  \"datafields\": [\n    {\n      \"key_0\": 3487.771438996975,\n      \"key_1\": false,\n      \"key_2\": 7444.437745925139,\n      \"key_3\": 8173\n    },\n    {\n      \"key_0\": 1488.9401043096584,\n      \"key_1\": true\n    }\n  ],\n  \"settings\": {\n    \"key_0\": \"string\",\n    \"key_1\": 659\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5fad1ec6-6a17-47f8-a542-0867fa10b4b4",
+              "name": "Authentication is missing or the token is invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profiles",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"status\": 3011\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "13341c8f-0578-4dd7-a885-79df97301e5d",
+          "name": "Search for users",
+          "request": {
+            "name": "Search for users",
+            "description": {
+              "content": "Searches users the authenticated account manages, by email or user ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search",
+                "users",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) Query string - an email address or user ID."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f2f00a5c-ba08-4c7c-af15-eb383648b9b1",
+              "name": "Matching users.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "users",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 20,\n    \"username\": \"string\",\n    \"first_name\": \"string\",\n    \"email\": \"z4rgF@IEPRizXpSJAPDeYsMlgZVBZT.covq\"\n  },\n  {\n    \"id\": 8626,\n    \"username\": \"string\",\n    \"first_name\": \"string\",\n    \"email\": \"QQJ4OIE8tFf@FMqWsCIeMBbNKwDJZZlNcdl.rv\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b9cd456a-3642-47e4-9252-b27d714e2998",
+              "name": "Authentication is missing or the token is invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "users",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"status\": 3011\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://badgerapis.badgermapping.com/api/2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "43e8a4d8-9346-4984-b9cc-d821319e3465",
+    "name": "Badger Maps Accounts Users API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for Badger Maps, field sales route-planning and CRM software. The API lets teams programmatically manage accounts (customers), account locations, optimized routes, check-ins (served under the /appointments/ resource), and users. Base URL: https://badgerapis.badgermapping.com/api/2. All requests are authenticated with a token supplied in an `Authorization: Token <api_key>` header. API/Developer Key access is included with paid plans (max 25k requests per day, per team); the key must be enabled by contacting Badger Maps support (support@badgermapping.com).\nEndpoint paths, methods, and the core request/response fields below are grounded in Badger Maps' published API Blueprint (Apiary). Fields marked \"modeled\" in descriptions are reasonable inferences where the public docs are thin and require an enabled key to verify exhaustively.\n\nContact Support:\n Name: Badger Maps Support\n Email: support@badgermapping.com",
+      "type": "text/plain"
+    }
+  }
+}

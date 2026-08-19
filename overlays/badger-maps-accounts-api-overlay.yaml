@@ -1,0 +1,75 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Badger Maps Accounts API
+  version: 1.0.0
+extends: openapi/badger-maps-accounts-api-openapi.yml
+x-generated: '2026-08-13'
+x-method: generated
+x-source: apis.yml + repository artifacts; no provider content is modified
+actions:
+- target: $.info
+  description: Record API Evangelist provenance and the runtime semantics the provider documents outside
+    the spec.
+  update:
+    x-apievangelist-provider: badger-maps
+    x-apievangelist-enriched: '2026-08-13'
+    x-apievangelist-source-contract: openapi/_original/badger-maps-apiary-blueprint.apib
+    x-apievangelist-source-url: https://jsapi.apiary.io/apis/badgerupdatedapi.apib
+    x-apievangelist-artifacts:
+      conventions: conventions/badger-maps-conventions.yml
+      errors: errors/badger-maps-error-codes.yml
+      data-model: data-model/badger-maps-data-model.yml
+      lifecycle: lifecycle/badger-maps-lifecycle.yml
+      rate-limits: rate-limits/badger-maps-rate-limits.yml
+      webhooks: asyncapi/badger-maps-webhooks.yml
+      sandbox: sandbox/badger-maps-sandbox.yml
+- target: $.info
+  description: Runtime constraints stated in the provider documentation but not expressible in the base
+    spec.
+  update:
+    x-idempotency:
+      supported: false
+      note: No idempotency key; a retried create duplicates the record.
+    x-pagination:
+      supported: false
+      note: Collection endpoints return bare JSON arrays with no cursor or page parameters.
+    x-rate-limit:
+      quota: 25000 requests per day per team
+      headers: null
+      note: No RateLimit-* response headers are published.
+    x-versioning:
+      scheme: uri-path
+      current: v2
+    x-access-gate:
+      self_serve: false
+      note: API/Developer Key must be enabled by Badger Maps support before it authenticates.
+- target: $.servers
+  description: Add the Apiary mock server as a documented non-production target.
+  update: []
+  x-note: Left empty deliberately - the Apiary mock host carries a rotating anonymous token and must be
+    read at runtime from https://jsapi.apiary.io/apis/badgerupdatedapi.swagger.json (urls.mock). See sandbox/badger-maps-sandbox.yml.
+- target: $.paths['/customers/'].post
+  description: Tag operation createAccount with its API Evangelist agent-access classification.
+  update:
+    x-apievangelist-operation: createAccount
+    x-apievangelist-agentic-access: agentic-access/badger-maps-agentic-access.yml
+- target: $.paths['/customers/{account_id}/'].delete
+  description: Tag operation deleteAccount with its API Evangelist agent-access classification.
+  update:
+    x-apievangelist-operation: deleteAccount
+    x-apievangelist-agentic-access: agentic-access/badger-maps-agentic-access.yml
+- target: $.paths['/customers/{account_id}/'].get
+  description: Tag operation getAccount with its API Evangelist agent-access classification.
+  update:
+    x-apievangelist-operation: getAccount
+    x-apievangelist-agentic-access: agentic-access/badger-maps-agentic-access.yml
+- target: $.paths['/customers/'].get
+  description: Tag operation listAccounts with its API Evangelist agent-access classification.
+  update:
+    x-apievangelist-operation: listAccounts
+    x-apievangelist-agentic-access: agentic-access/badger-maps-agentic-access.yml
+- target: $.paths['/customers/{account_id}/'].patch
+  description: Tag operation updateAccount with its API Evangelist agent-access classification.
+  update:
+    x-apievangelist-operation: updateAccount
+    x-apievangelist-agentic-access: agentic-access/badger-maps-agentic-access.yml

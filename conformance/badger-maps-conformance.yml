@@ -1,0 +1,111 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  openapi/_original/badger-maps-openapi.yml,
+  openapi/_original/badger-maps-apiary-blueprint.apib,
+  security/badger-maps-domain-security.yml
+provider: Badger Maps
+providerId: badger-maps
+description: >-
+  Which cross-cutting industry standards the Badger Maps API conforms to,
+  derived from the provider's published API Blueprint, the OpenAPI in this repo,
+  and live domain probes. Badger Maps is a field-sales SaaS with no regulated
+  industry regime attached; the honest reading is a small conventional REST API
+  with static token auth and none of the modern interoperability standards.
+standards:
+- id: rest
+  conforms: true
+  evidence: >-
+    Resource-oriented paths (/customers/, /locations/{id}/, /routes/{id}/) with
+    GET/POST/PATCH/DELETE and conventional status codes.
+- id: openapi
+  conforms: partial
+  evidence: >-
+    Badger publishes API Blueprint 1A (Apiary), not OpenAPI. The OpenAPI 3.0.3
+    documents in openapi/ are API Evangelist translations of that blueprint, not
+    a provider-published contract.
+- id: api-blueprint
+  conforms: true
+  evidence: >-
+    FORMAT 1A blueprint served at https://jsapi.apiary.io/apis/badgerupdatedapi.apib,
+    owner "Badger Maps", HOST https://badgerapis.badgermapping.com/api/2.
+- id: oauth2
+  conforms: false
+  evidence: No oauth2 securityScheme; authentication is a static bearer-style token.
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration returns 404 on every host.
+- id: rfc6750-bearer
+  conforms: false
+  evidence: >-
+    Uses the Authorization header but with the non-standard "Token" scheme rather
+    than "Bearer".
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: No application/problem+json responses; login errors are 200 with a status string.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No Sunset or Deprecation header documented.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on all four hosts.
+- id: rfc8615-well-known
+  conforms: false
+  evidence: No /.well-known/ document of any kind is served.
+- id: asyncapi
+  conforms: false
+  evidence: >-
+    Webhooks are documented by name only (3 events); no AsyncAPI document and no
+    payload schemas are published.
+- id: idempotency-key
+  conforms: false
+  evidence: No idempotency key header or replay contract in the blueprint or the OpenAPI.
+- id: pagination
+  conforms: false
+  evidence: Collection endpoints return bare JSON arrays with no cursor, page or limit parameters.
+- id: json-api
+  conforms: false
+  evidence: Plain JSON objects/arrays; no JSON:API document structure.
+- id: scim
+  conforms: false
+  evidence: >-
+    User management is a single /search/users/ lookup; no /Users or /Groups SCIM
+    resources.
+- id: geojson
+  conforms: false
+  evidence: >-
+    Geometry is carried as WKT strings ("POINT (-87.62 41.89)") plus separate
+    lat/long numbers, not GeoJSON.
+- id: mcp
+  conforms: false
+  evidence: No Model Context Protocol server published by the provider.
+- id: a2a
+  conforms: false
+  evidence: No agent card at /.well-known/agent-card.json or /.well-known/agent.json.
+- id: tls
+  conforms: true
+  evidence: >-
+    All Badger-controlled hosts serve HTTPS; badgerapis.badgermapping.com
+    negotiates TLSv1.3 with HSTS max-age 31536000.
+- id: dnssec
+  conforms: false
+  evidence: badgermapping.com is not DNSSEC-signed.
+- id: gdpr
+  conforms: claimed
+  evidence: >-
+    The published privacy policy has a "Further Information for Users in the
+    European Union" section citing the General Data Protection Regulation and
+    names a DPO contact (dpo@badgermapping.com). This is a policy statement, not
+    an audited certification.
+compliance_program:
+  published: false
+  certifications: []
+  trust_center: null
+  note: >-
+    No SOC 2, ISO 27001, PCI DSS, HIPAA or FedRAMP claim is published anywhere on
+    badgermapping.com, and trust./security./compliance/ paths all fail to
+    resolve or 404. No Compliance pointer is emitted in apis.yml - a GDPR
+    paragraph in a privacy policy is not a published compliance program.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

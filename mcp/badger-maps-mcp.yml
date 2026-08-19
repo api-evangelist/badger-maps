@@ -1,0 +1,87 @@
+generated: '2026-08-13'
+method: derived
+status: candidate
+source: openapi/_original/badger-maps-openapi.yml
+provider: Badger Maps
+providerId: badger-maps
+description: >-
+  Badger Maps ships no Model Context Protocol server. A search of the provider
+  docs, the company GitHub organization (github.com/BadgerMaps), npm and the
+  public MCP registries on 2026-08-13 found no first-party hosted endpoint and
+  no first-party stdio package. Third-party generic bridges exist (Zapier MCP
+  exposes Badger Maps through its own connector platform), but those are Zapier
+  products running on Zapier infrastructure - they are not a Badger Maps agent
+  surface and are deliberately not recorded as one. The tools below are a
+  CANDIDATE set derived one-to-one from the 13 operations in the Badger Maps
+  OpenAPI; nobody serves them today.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: api-key
+  verified: derived
+  note: >-
+    No provider MCP server of any kind. auth reflects what a server would need -
+    the Badger Maps REST API takes an "Authorization: Token <api_key>" header
+    with a key that Badger Maps support must enable per team.
+server:
+  name: badger-maps
+  transport: null
+  url: null
+tool_count: 13
+tools:
+- name: badger_login
+  description: Exchange a username and password for a Badger Maps API token.
+  source_operation: openapi/badger-maps-users-api-openapi.yml#login
+- name: badger_get_profile
+  description: >-
+    Retrieve the authenticated user's profile, including the datafields map that
+    binds custom field names (ct/cn) to account properties.
+  source_operation: openapi/badger-maps-users-api-openapi.yml#getProfile
+- name: badger_search_users
+  description: Find a Badger user at your company by email address or Badger user ID.
+  source_operation: openapi/badger-maps-users-api-openapi.yml#searchUsers
+- name: badger_list_accounts
+  description: List all accounts (customers) for the authenticated user.
+  source_operation: openapi/badger-maps-accounts-api-openapi.yml#listAccounts
+- name: badger_create_account
+  description: Create a new account with a name, address and owning user.
+  source_operation: openapi/badger-maps-accounts-api-openapi.yml#createAccount
+- name: badger_get_account
+  description: Retrieve a single account by id, including its locations and custom fields.
+  source_operation: openapi/badger-maps-accounts-api-openapi.yml#getAccount
+- name: badger_update_account
+  description: Update account fields, custom fields, or reassign the account owner.
+  source_operation: openapi/badger-maps-accounts-api-openapi.yml#updateAccount
+- name: badger_delete_account
+  description: Delete an account.
+  source_operation: openapi/badger-maps-accounts-api-openapi.yml#deleteAccount
+- name: badger_update_location
+  description: Update an account location's address, optionally supplying lat/lng to skip geocoding.
+  source_operation: openapi/badger-maps-locations-api-openapi.yml#updateLocation
+- name: badger_list_check_ins
+  description: List check-ins recorded against an account.
+  source_operation: openapi/badger-maps-check-ins-api-openapi.yml#listCheckIns
+- name: badger_create_check_in
+  description: Record a check-in against an account.
+  source_operation: openapi/badger-maps-check-ins-api-openapi.yml#createCheckIn
+- name: badger_list_routes
+  description: List the authenticated user's routes.
+  source_operation: openapi/badger-maps-routes-api-openapi.yml#listRoutes
+- name: badger_get_route
+  description: Retrieve a route with its ordered waypoints.
+  source_operation: openapi/badger-maps-routes-api-openapi.yml#getRoute
+searched:
+- source: https://badgerupdatedapi.docs.apiary.io/
+  status: 200
+  result: no MCP server documented
+- source: https://api.github.com/orgs/BadgerMaps/repos
+  status: 200
+  result: 23 public repos, no MCP server repository
+- source: npm registry search "badger maps"
+  status: 200
+  result: no first-party MCP package
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

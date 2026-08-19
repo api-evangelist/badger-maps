@@ -1,0 +1,65 @@
+generated: '2026-08-13'
+method: searched
+source: https://jsapi.apiary.io/apis/badgerupdatedapi.apib
+spec_type: none
+provider: Badger Maps
+providerId: badger-maps
+description: >-
+  Badger Maps documents a webhook surface in the "Webhooks" section of its
+  published API Blueprint (Apiary). Three events are named. Badger publishes no
+  AsyncAPI document, no public webhook payload reference, no subscription
+  management endpoint in the REST API, and no signature/verification contract -
+  subscription is arranged by contacting a Badger Maps Integration Specialist by
+  email. What is captured below is exactly what the provider publishes; payload
+  shapes, delivery semantics, retries and signing are NOT published and are
+  recorded as unknown rather than modeled.
+asyncapi_published: false
+webhooks:
+  documented: true
+  docs: https://badgerupdatedapi.docs.apiary.io/#introduction/webhooks
+  subscription:
+    self_serve: false
+    mechanism: email
+    contact: support@badgermapping.com
+    note: >-
+      "Contact an Integration Specialist at Badger for more information and to
+      subscribe to any webhooks." There is no self-serve webhook management
+      endpoint or UI documented.
+  events:
+  - name: Account Created
+    resource: account
+    rest_equivalent: openapi/badger-maps-accounts-api-openapi.yml#createAccount
+    payload_schema: not published
+  - name: Account Updated
+    resource: account
+    rest_equivalent: openapi/badger-maps-accounts-api-openapi.yml#updateAccount
+    payload_schema: not published
+  - name: Check-in Created
+    resource: check-in
+    rest_equivalent: openapi/badger-maps-check-ins-api-openapi.yml#createCheckIn
+    payload_schema: not published
+  event_count: 3
+  delivery:
+    transport: HTTP callback
+    signing: not published
+    retries: not published
+    ordering: not published
+gaps:
+- No AsyncAPI or EventCatalog document is published.
+- Webhook payload schemas are not published; only event names are.
+- No signature header / verification procedure is documented.
+- No self-serve subscription endpoint; subscription requires emailing support.
+x-evidence:
+- url: https://jsapi.apiary.io/apis/badgerupdatedapi.apib
+  http_status: 200
+  fetched: '2026-08-13'
+  note: >-
+    Provider-published API Blueprint served by Apiary for the badgerupdatedapi
+    subdomain, owner "Badger Maps"; HOST directive is
+    https://badgerapis.badgermapping.com/api/2.
+- url: https://badgerupdatedapi.docs.apiary.io/
+  http_status: 200
+  fetched: '2026-08-13'
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

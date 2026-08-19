@@ -1,0 +1,67 @@
+generated: '2026-08-13'
+method: probed
+source: live HTTP probes of every apis.yml and OpenAPI servers[] host
+provider: Badger Maps
+providerId: badger-maps
+description: >-
+  Every RFC 8615 /.well-known/ discovery path was probed against all four Badger
+  Maps hosts on 2026-08-13. Nothing is served: all 28 probes returned HTTP 404.
+  The API host (badgerapis.badgermapping.com) answers 404 with a Heroku
+  maintenance-page shell; the marketing/app host (www.badgermapping.com) and the
+  support host answer 404 with their own site 404 pages. No security.txt, no
+  OIDC or OAuth discovery document, no api-catalog, no ai-plugin.json, no agent
+  card. This file records a verified ABSENCE - no WellKnown, SecurityTxt or
+  AgentCard pointer is emitted in apis.yml, because the provider serves none of
+  these surfaces.
+documents_found: 0
+hosts_probed: 4
+paths_probed: 7
+hosts:
+- host: https://badgerapis.badgermapping.com
+  role: API base host (OpenAPI servers[] + apis.yml baseURL)
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+- host: https://www.badgermapping.com
+  role: Website / app host
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+- host: https://badgermapping.com
+  role: Apex domain
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+- host: https://support.badgermapping.com
+  role: Knowledgebase / support host
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+note: >-
+  The docs host (badgerupdatedapi.docs.apiary.io) is Apiary infrastructure, not a
+  Badger Maps-controlled origin, and answers 200 with an HTML SPA shell for
+  arbitrary paths including /llms.txt - a soft-200 that is NOT a document and is
+  not credited here.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

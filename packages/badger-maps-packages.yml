@@ -1,0 +1,61 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  npm registry search, PyPI, RubyGems, crates.io, pkg.go.dev, Packagist,
+  github.com/BadgerMaps, and the Badger Maps API Blueprint (Apiary)
+provider: Badger Maps
+providerId: badger-maps
+description: >-
+  Badger Maps publishes no first-party client library in any public package
+  registry. Every registry below was queried unauthenticated on 2026-08-13 and
+  returned either a 404 or no matching package. The company GitHub organization
+  (github.com/BadgerMaps, 23 public repos) contains only forks of third-party
+  Django/Heroku/JS projects - there is no Badger Maps SDK repository. The
+  published API Blueprint documents raw HTTP with an
+  "Authorization: Token <api_key>" header and links to no SDK. The only Badger
+  Maps package on any registry is @pipedream/badger_maps, which is authored and
+  maintained by Pipedream, not by Badger Maps, and is therefore recorded as
+  third-party rather than official.
+package_count: 0
+official_package_count: 0
+packages: []
+third_party:
+- language: javascript
+  registry: npm
+  name: '@pipedream/badger_maps'
+  url: https://www.npmjs.com/package/@pipedream/badger_maps
+  version: 0.1.0
+  published: '2024-06-21'
+  official: false
+  note: >-
+    Pipedream-authored connector components for Badger Maps, published under the
+    @pipedream scope. Not a Badger Maps product and not a general-purpose client
+    library; listed here only so the search result is recorded, not credited.
+registries_checked:
+- registry: npm
+  query: badger-maps / badger_maps / badgermaps
+  result: no first-party package
+  status: 200
+- registry: pypi
+  query: badger-maps, badgermaps, badger_maps
+  result: 404 on all three
+  status: 404
+- registry: rubygems
+  query: badger_maps
+  result: 404
+  status: 404
+- registry: crates.io
+  query: badgermaps
+  result: 0 crates
+  status: 200
+- registry: github
+  query: github.com/BadgerMaps
+  result: 23 public repos, all forks of unrelated third-party projects
+  status: 200
+gaps:
+- No first-party SDK in any language.
+- No first-party CLI.
+- API consumers must hand-roll HTTP against the token-authenticated REST API.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

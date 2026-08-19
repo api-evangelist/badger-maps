@@ -1,0 +1,138 @@
+generated: '2026-08-13'
+method: searched
+source: https://jsapi.apiary.io/apis/badgerupdatedapi.apib
+docs: https://badgerupdatedapi.docs.apiary.io/
+provider: Badger Maps
+providerId: badger-maps
+description: >-
+  Cross-cutting request/response semantics for the Badger Maps API v2, read from
+  the provider's published API Blueprint and cross-checked against the OpenAPI in
+  this repo. Badger Maps is a small, conventional Django-style REST API: static
+  token in an Authorization header, form-encoded write bodies, JSON responses,
+  trailing-slash paths, and version pinned in the URI path. Several runtime
+  semantics an agent needs - idempotency, pagination, rate-limit headers,
+  request tracing - are NOT published, and are recorded here as absent rather
+  than modeled.
+authentication:
+  style: static-token
+  header: Authorization
+  format: 'Token <api_key>'
+  obtained_via: >-
+    POST /login/ with username+password returns a token, or Badger Maps support
+    enables an API/Developer Key for the team.
+  gating: >-
+    API access must be switched on by Badger Maps support (email
+    support@badgermapping.com); it is not self-serve.
+  docs: https://badgerupdatedapi.docs.apiary.io/#introduction/authorization
+  artifact: authentication/badger-maps-authentication.yml
+idempotency:
+  supported: false
+  header: null
+  note: >-
+    No idempotency key, no request-replay contract, and no idempotency parameter
+    anywhere in the API Blueprint or the OpenAPI. A retried POST /customers/ or
+    POST /appointments/ creates a duplicate record. No Idempotency pointer is
+    emitted in apis.yml because the provider has no idempotency contract.
+pagination:
+  supported: false
+  style: none-documented
+  note: >-
+    GET /customers/ and GET /routes/ return a bare JSON array with no envelope,
+    no cursor, no page/limit/offset parameters and no Link header in the
+    published documentation. Behaviour on large accounts is undocumented.
+filtering:
+  supported: partial
+  parameters:
+  - name: rn
+    applies_to: GET /customers/
+    description: >-
+      Optional query parameter carrying the user ID of a managed user, so a
+      manager can list that user's accounts instead of their own.
+  - name: customer_id
+    applies_to: GET /appointments/
+    description: Required account id whose check-ins are returned.
+  - name: q
+    applies_to: GET /search/users/
+    description: Email address or Badger user ID to look up.
+field_expansion:
+  supported: false
+  note: >-
+    No expand/fields/include parameters. Related objects are embedded eagerly
+    and unconditionally - an account response always carries its locations[]
+    array, a route response always carries its waypoints[] array.
+custom_fields:
+  supported: true
+  mechanism: >-
+    Each team defines custom fields; GET /profiles/ returns a datafields[] map
+    whose "name" values are short codes (ct, ct2 ... cn, cn2 ...) and whose
+    "label" values are the human names used in the customer's own system.
+  binding_rule: >-
+    A datafield named "ct2" is read on the account object as "custom_text2" and a
+    datafield named "cn3" as "custom_numeric3"; the un-numbered "ct" and "cn" map
+    to "custom_text" and "custom_numeric" with no suffix. On write, both the
+    short code and the long key are accepted per the create-account examples.
+  range: custom_text..custom_text30 and custom_numeric..custom_numeric30
+  note: >-
+    This is the single most important convention in the API - an agent cannot
+    read or write a Badger custom field without first calling getProfile and
+    resolving the mapping.
+request_encoding:
+  write_bodies: application/x-www-form-urlencoded
+  read_responses: application/json
+  note: >-
+    Every POST and PATCH in the Blueprint uses form encoding, not JSON. Values
+    must be URL encoded. Sending a JSON body is not documented as supported.
+path_style:
+  trailing_slash: required
+  note: >-
+    Every documented path ends in a slash (/login/, /customers/, /routes/{id}/).
+    The one exception in the Blueprint is /appointments/ with the customer_id
+    query parameter.
+versioning:
+  scheme: uri-path
+  current: v2
+  base: https://badgerapis.badgermapping.com/api/2
+  policy: >-
+    "The current version of the API is v2. Other versions may be made available
+    as backwards incompatible changes are introduced." No dated version header,
+    no version negotiation, no published sunset window.
+  docs: https://badgerupdatedapi.docs.apiary.io/#introduction/versioning
+error_envelope:
+  shape: inconsistent
+  login_contract: >-
+    POST /login/ returns HTTP 200 with a "status" string field naming the outcome
+    (login_successful, error_missing_key, error_account_disabled,
+    error_account_does_not_exist, error_non_post_request, error_trial_expired,
+    error_account_delinquent). Failures are carried in the body, not the status
+    code.
+  rest_contract: >-
+    Other operations use conventional HTTP status codes (401 unauthenticated,
+    404 not found, 400 invalid input). No RFC 9457 problem+json, no machine
+    error codes, no error type URIs.
+  artifact: errors/badger-maps-error-codes.yml
+rate_limit_signaling:
+  documented_limit: 25000 requests per day per team
+  headers: not published
+  exhaustion_status: not published
+  note: >-
+    The daily quota is stated on the pricing/features pages, but no
+    X-RateLimit-*/RateLimit-* header contract and no documented status code on
+    exhaustion. An agent cannot see how much of the team quota is left.
+  artifact: rate-limits/badger-maps-rate-limits.yml
+request_tracing:
+  request_id_header: not published
+  note: No correlation/request-id header is documented for support escalation.
+webhooks:
+  supported: true
+  events: [Account Created, Account Updated, Check-in Created]
+  subscription: email an Integration Specialist at support@badgermapping.com
+  artifact: asyncapi/badger-maps-webhooks.yml
+cross_links:
+  authentication: authentication/badger-maps-authentication.yml
+  errors: errors/badger-maps-error-codes.yml
+  lifecycle: lifecycle/badger-maps-lifecycle.yml
+  rate_limits: rate-limits/badger-maps-rate-limits.yml
+  data_model: data-model/badger-maps-data-model.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

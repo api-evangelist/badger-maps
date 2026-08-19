@@ -1,0 +1,173 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  openapi/_original/badger-maps-openapi.yml (components.schemas) cross-checked
+  against openapi/_original/badger-maps-apiary-blueprint.apib response examples
+provider: Badger Maps
+providerId: badger-maps
+description: >-
+  Entity-relationship graph for the Badger Maps API v2, derived from the schema
+  set in the OpenAPI and the response bodies in the provider's published API
+  Blueprint. The model is small and account-centric: an Account (exposed on the
+  wire as "customer") is the hub, carrying embedded Locations and referenced by
+  Check-Ins; Routes are an independent per-user object whose Waypoints point back
+  at Accounts and Locations by id. Identifiers are bare integers with no type
+  prefix, so an id is only meaningful together with the resource it came from.
+id_convention:
+  format: integer
+  prefixed: false
+  note: >-
+    No prefixed ids (no cus_/loc_/rte_). An account id, a location id and a route
+    id are indistinguishable integers - the Blueprint warns explicitly that a
+    location_id "is not the same as the account ID".
+entity_count: 8
+relationship_count: 9
+entities:
+- name: Account
+  wire_name: customer
+  schema: Account
+  path: /customers/{account_id}/
+  description: >-
+    A business or contact a rep maps and visits. The hub object of the API.
+  key_fields: [id, first_name, last_name, full_name, phone_number, email, notes,
+    original_address, customer_id, crm_id, territory]
+  extension_fields: custom_text..custom_text30, custom_numeric..custom_numeric30
+  operations: [listAccounts, createAccount, getAccount, updateAccount, deleteAccount]
+- name: Location
+  schema: Location
+  path: /locations/{location_id}/
+  description: >-
+    A geocoded street address attached to an account. Returned embedded on the
+    account but updated through its own endpoint.
+  key_fields: [id, name, address_line_1, city, state, zipcode, lat, long, location]
+  operations: [updateLocation]
+  note: >-
+    "location" is a WKT POINT string; lat/long repeat the same coordinate as
+    numbers.
+- name: CheckIn
+  wire_name: appointment
+  schema: CheckIn
+  path: /appointments/
+  description: >-
+    A timestamped activity log recorded against an account. Served under the
+    /appointments/ resource, not /check-ins/.
+  key_fields: [id, customer, log_datetime, type, comments, extra_fields, created_by, crm_id]
+  operations: [listCheckIns, createCheckIn]
+- name: Route
+  schema: Route
+  path: /routes/{route_id}/
+  description: An optimized driving route for the authenticated user on a given date.
+  key_fields: [id, name, route_date, duration, start_address, destination_address,
+    start_time, waypoints]
+  operations: [listRoutes, getRoute]
+- name: RouteSummary
+  schema: RouteSummary
+  path: /routes/
+  description: >-
+    The thin projection of a Route returned by the list endpoint - id, name and
+    route_date only. Not a separate stored object.
+  key_fields: [id, name, route_date]
+  operations: [listRoutes]
+- name: Waypoint
+  schema: Waypoint
+  description: >-
+    An ordered stop on a route. Denormalized: it repeats the address inline AND
+    carries foreign keys to the underlying location and account.
+  key_fields: [id, name, address, lat, long, location, position, layover_minutes,
+    appt_time, type, location_id, customer_id, place_id]
+- name: Profile
+  schema: Profile
+  path: /profiles/
+  description: >-
+    The authenticated user's profile. Carries the datafields[] map that every
+    custom-field read or write depends on, plus CRM binding (crm_type,
+    crm_base_url) and map defaults.
+  key_fields: [id, first_name, last_name, email, company, manager, is_manager,
+    datafields, apptlog_fields, acctlog_fields, crm_type, crm_base_url,
+    map_start, map_start_zoom, default_appt_length]
+  operations: [getProfile]
+- name: User
+  schema: User
+  path: /search/users/
+  description: >-
+    A Badger user at the same company, resolved by email address or Badger user
+    ID. The lookup that turns an email into the account_owner value a create
+    needs.
+  key_fields: [id, username, first_name, email]
+  operations: [searchUsers, login]
+relationships:
+- from: Account
+  to: Location
+  type: has_many
+  via: locations[]
+  embedding: eager
+  note: Every account response embeds its full locations array; typically one entry.
+- from: Location
+  to: Account
+  type: belongs_to
+  via: parent account response
+  note: >-
+    A Location has no back-reference field of its own - the only way to know
+    which account a location belongs to is the account response it arrived in.
+- from: CheckIn
+  to: Account
+  type: belongs_to
+  via: customer
+- from: Account
+  to: CheckIn
+  type: has_many
+  via: 'GET /appointments/?customer_id={id}'
+  embedding: none
+  note: Check-ins are never embedded on the account; they are a separate fetch.
+- from: Route
+  to: Waypoint
+  type: has_many
+  via: waypoints[]
+  embedding: eager
+  ordering: position
+- from: Waypoint
+  to: Location
+  type: belongs_to
+  via: location_id
+- from: Waypoint
+  to: Account
+  type: belongs_to
+  via: customer_id
+- from: Account
+  to: User
+  type: belongs_to
+  via: account_owner
+  note: >-
+    Write-only on create/update; the account response does not echo the owner.
+    Reassignment requires the token to belong to the target user's manager.
+- from: Profile
+  to: User
+  type: has_one
+  via: manager
+derived_bindings:
+- name: custom field resolution
+  from: Profile.datafields[].name
+  to: Account.custom_text*/custom_numeric*
+  rule: >-
+    datafield "ct2" -> account field "custom_text2"; "cn3" -> "custom_numeric3";
+    bare "ct"/"cn" -> "custom_text"/"custom_numeric". The datafield "label" is
+    the customer's own name for the field.
+  note: >-
+    This is a runtime binding, not a static schema relationship - the mapping
+    differs per team and must be fetched with getProfile before any custom-field
+    read or write.
+- name: CRM linkage
+  from: Account.crm_id / CheckIn.crm_id
+  to: external CRM record
+  rule: >-
+    Nullable passthrough identifiers linking a Badger record to the row in the
+    connected CRM named by Profile.crm_type and Profile.crm_base_url.
+gaps:
+- No Company entity is addressable; company appears only nested inside Profile.
+- No Territory entity is addressable; territory appears only as a name string on a created account.
+- No endpoint creates, updates or deletes Routes or Waypoints - routes are read-only over the API.
+- No endpoint creates a Location directly; locations are created as a side effect of createAccount.
+- No endpoint updates or deletes a Check-In.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

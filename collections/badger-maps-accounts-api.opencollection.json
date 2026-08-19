@@ -1,0 +1,121 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Badger Maps Accounts API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://badgerapis.badgermapping.com/api/2/customers/",
+            "params": [
+              {
+                "name": "rn",
+                "value": "",
+                "type": "query",
+                "description": "Optional managed-user id to scope the list to (modeled)."
+              }
+            ]
+          },
+          "docs": "Returns an array of accounts (customers) owned by the authenticated user. The optional `rn` parameter (modeled) scopes the list to a managed user."
+        },
+        {
+          "info": {
+            "name": "Create an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://badgerapis.badgermapping.com/api/2/customers/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new account (customer). Requires at least a name and address plus an account owner; latitude/longitude and custom data fields are optional."
+        },
+        {
+          "info": {
+            "name": "Retrieve an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://badgerapis.badgermapping.com/api/2/customers/:account_id/",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "The account (customer) id."
+              }
+            ]
+          },
+          "docs": "Returns a single account with its locations and custom fields."
+        },
+        {
+          "info": {
+            "name": "Update an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://badgerapis.badgermapping.com/api/2/customers/:account_id/",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "The account (customer) id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Partially updates an account - for example custom_text fields or a change of account_owner."
+        },
+        {
+          "info": {
+            "name": "Delete an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://badgerapis.badgermapping.com/api/2/customers/:account_id/",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "The account (customer) id."
+              }
+            ]
+          },
+          "docs": "Deletes an account (customer). Returns 204 No Content on success."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

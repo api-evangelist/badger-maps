@@ -1,0 +1,42 @@
+generated: '2026-08-13'
+method: generated
+source: >-
+  openapi/badger-maps-*-openapi.yml operationIds, cross-checked against
+  openapi/_original/badger-maps-apiary-blueprint.apib and
+  conventions/badger-maps-conventions.yml
+provider: Badger Maps
+providerId: badger-maps
+description: >-
+  Packaged Agent Skills for the Badger Maps API v2. Every step is grounded in an
+  operationId that exists verbatim in the OpenAPI in this repository; every
+  runtime rule (Token auth scheme, form-encoded bodies, the custom-field mapping,
+  the absent idempotency key, the 25k/day team quota, the login statuses that
+  arrive as HTTP 200) comes from the provider's published API Blueprint. Badger
+  Maps publishes no AGENTS.md or skill files of its own.
+skill_count: 4
+skills:
+- file: badger-maps-authenticate-and-map-fields.md
+  name: Authenticate to Badger Maps and resolve custom field mappings
+  api: openapi/badger-maps-users-api-openapi.yml
+  operations: [login, getProfile, searchUsers]
+  prerequisite_for: all
+- file: badger-maps-sync-accounts-from-crm.md
+  name: Sync accounts into Badger Maps from a CRM or list
+  api: openapi/badger-maps-accounts-api-openapi.yml
+  operations: [searchUsers, getProfile, listAccounts, createAccount, getAccount,
+    updateAccount, deleteAccount]
+- file: badger-maps-log-and-review-check-ins.md
+  name: Log and review Badger Maps check-ins
+  api: openapi/badger-maps-check-ins-api-openapi.yml
+  operations: [listCheckIns, createCheckIn, getProfile, listAccounts]
+- file: badger-maps-read-routes-and-fix-locations.md
+  name: Read Badger Maps routes and correct account locations
+  api: openapi/badger-maps-routes-api-openapi.yml
+  operations: [listRoutes, getRoute, getAccount, updateLocation]
+operation_coverage:
+  total_operations: 13
+  covered: 13
+  uncovered: []
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

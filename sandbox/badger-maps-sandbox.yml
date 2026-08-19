@@ -1,0 +1,84 @@
+generated: '2026-08-13'
+method: probed
+source: https://badgerupdatedapi.docs.apiary.io/
+provider: Badger Maps
+providerId: badger-maps
+description: >-
+  Badger Maps operates no test/sandbox tenant of its own - there is no test mode,
+  no test key prefix, no separate sandbox host, and no test fixtures. What it
+  does have is the interactive console and mock server that ship with its Apiary
+  documentation: every operation in the published API Blueprint is backed by a
+  mock endpoint that returns the documented example response without
+  authentication. That is a genuine try-before-you-integrate surface, and it was
+  verified live on 2026-08-13, but it is Apiary infrastructure replaying static
+  examples, not a Badger Maps environment holding state.
+test_environment:
+  exists: false
+  separate_host: false
+  test_mode: false
+  key_prefix_separation: false
+  note: >-
+    One credential model only. An API/Developer Key is issued against the live
+    team account and must be enabled by Badger Maps support
+    (support@badgermapping.com) before it authenticates. There is no
+    non-production key, so first integration work happens against production
+    data.
+mock_server:
+  available: true
+  platform: Apiary
+  verified: '2026-08-13'
+  url_pattern: https://private-anon-{token}-badgerupdatedapi.apiary-mock.com/api/2/
+  token_note: >-
+    {token} is an anonymous per-session identifier minted by Apiary, not a Badger
+    Maps credential. Read the current value from the "urls.mock" field of
+    https://jsapi.apiary.io/apis/badgerupdatedapi.swagger.json - a hard-coded
+    host will stop resolving.
+  auth_required: false
+  behaviour: >-
+    Replays the example response declared in the API Blueprint for the matching
+    method+path. Stateless - a POST does not affect a later GET.
+  probe:
+    request: GET {mock}routes/
+    status: 200
+    body: the two-route example array from the Blueprint Routes section
+  proxy_url_pattern: https://private-anon-{token}-badgerupdatedapi.apiary-proxy.com/api/2/
+  proxy_note: >-
+    Apiary also mints a proxy host that forwards to the production API at
+    https://badgerapis.badgermapping.com/api/2/ while recording traffic. It is a
+    pass-through to production and still needs a real enabled API key - it is
+    NOT a sandbox.
+console:
+  available: true
+  url: https://badgerupdatedapi.docs.apiary.io/
+  default_mode: cloud
+  note: >-
+    The Apiary documentation page carries a "Try it" console that can be pointed
+    at either the mock server or the production host.
+test_values:
+  published: false
+  note: >-
+    No magic test identifiers, no seeded demo team, no reserved account ids. The
+    ids that appear throughout the documentation (account 1981937, location
+    1611109, route 1234, user 441, token abcdefg12345678) are illustrative
+    example values from Badger's own demo tenant, not reserved test fixtures -
+    they are recorded here as documentation examples only and must not be used
+    as test data against production.
+free_trial:
+  url: https://www.badgermapping.com/free-trial/
+  status: 200
+  note: >-
+    A product free trial exists for the application, but the login statuses in
+    the API Blueprint include error_trial_expired, and API/Developer Key access
+    is described as included with paid plans - so a trial does not reliably grant
+    API access.
+gaps:
+- No provider-run sandbox or test tenant.
+- No test-vs-live key separation; one key, issued against production.
+- API key enablement is a manual support ticket, which is the real onboarding gate.
+x-evidence:
+- {url: 'https://jsapi.apiary.io/apis/badgerupdatedapi.swagger.json', http_status: 200, fetched: '2026-08-13'}
+- {url: 'https://private-anon-{token}-badgerupdatedapi.apiary-mock.com/api/2/routes/', http_status: 200, fetched: '2026-08-13'}
+- {url: 'https://www.badgermapping.com/free-trial/', http_status: 200, fetched: '2026-08-13'}
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

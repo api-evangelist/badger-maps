@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Badger Maps Accounts Locations API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Locations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update an account location",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://badgerapis.badgermapping.com/api/2/locations/:location_id/",
+            "params": [
+              {
+                "name": "location_id",
+                "value": "",
+                "type": "path",
+                "description": "The location id."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a location attached to an account. An address is required; latitude/longitude may be supplied to override Badger's geocoding."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

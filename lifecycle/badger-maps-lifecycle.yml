@@ -1,0 +1,70 @@
+generated: '2026-08-13'
+method: searched
+source: https://jsapi.apiary.io/apis/badgerupdatedapi.apib
+provider: Badger Maps
+providerId: badger-maps
+description: >-
+  Versioning, deprecation and operational-transparency posture for the Badger
+  Maps API. Badger publishes a one-paragraph versioning statement in its API
+  Blueprint and runs a live status page, but publishes no deprecation policy, no
+  sunset/deprecation header contract, no SLA and no API changelog.
+versioning:
+  scheme: uri-path
+  current: v2
+  base: https://badgerapis.badgermapping.com/api/2
+  policy_text: >-
+    "The current version of the API is v2. Other versions may be made available
+    as backwards incompatible changes are introduced."
+  docs: https://badgerupdatedapi.docs.apiary.io/#introduction/versioning
+  note: >-
+    The statement establishes that breaking changes get a new path version, but
+    names no notice period, no support window for v1, and no migration guide.
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  note: >-
+    No RFC 8594 Sunset or Deprecation header support is documented, and no
+    deprecation policy page exists. No Deprecation pointer is emitted in
+    apis.yml because the provider publishes no deprecation policy.
+deprecated_operations: []
+sla:
+  url: null
+  uptime_target: null
+  published: false
+  note: No public SLA or uptime commitment for the API.
+status_page:
+  url: https://status.badgermapping.com/
+  status: 200
+  platform: self-published (Tumblr-hosted "Badger Status")
+  current_state_at_probe: 'Badger Status: OK'
+  recent_entries:
+  - '[Completed] Scheduled Maintenance: Sunday, May 17, 2026 3:00am PST'
+  - '[Completed] Scheduled Maintenance: Sunday, January 25, 2026 2:00am PST'
+  linked_from: https://www.badgermapping.com/ (site footer)
+  machine_readable: false
+  note: >-
+    A real, currently-maintained status page - it carries dated maintenance
+    notices and an overall state - but it is a blog, not a status platform: no
+    JSON status endpoint, no per-component health, no subscribe/webhook feed, and
+    no separate API component.
+changelog:
+  url: null
+  published: false
+  note: >-
+    No API changelog. The Apiary document reports lastUpdated 2025-08-25; that is
+    the only public signal of when the contract last moved.
+support:
+  url: https://www.badgermapping.com/support/
+  email: support@badgermapping.com
+  api_enablement: >-
+    API/Developer Key access must be enabled by emailing Badger Maps support; it
+    is not self-serve.
+x-evidence:
+- {url: 'https://status.badgermapping.com/', http_status: 200, fetched: '2026-08-13'}
+- {url: 'https://jsapi.apiary.io/apis/badgerupdatedapi.apib', http_status: 200, fetched: '2026-08-13'}
+- {url: 'https://www.badgermapping.com/changelog/', http_status: 404, fetched: '2026-08-13'}
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

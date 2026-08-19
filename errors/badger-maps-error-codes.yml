@@ -1,0 +1,104 @@
+generated: '2026-08-13'
+method: searched
+source: https://jsapi.apiary.io/apis/badgerupdatedapi.apib
+docs: https://badgerupdatedapi.docs.apiary.io/#reference/users/authentication
+provider: Badger Maps
+providerId: badger-maps
+format: proprietary
+description: >-
+  Badger Maps publishes one real error registry: the login status vocabulary in
+  the Authentication section of its API Blueprint. POST /login/ answers HTTP 200
+  and carries the outcome in a "status" string, so a client must read the body
+  rather than the status line. The rest of the API uses bare HTTP status codes
+  with no machine-readable error body documented - no RFC 9457 problem+json, no
+  error code registry, no error type URIs. The HTTP-level entries below are
+  DERIVED from the responses declared in the OpenAPI in this repo; the login
+  statuses are SEARCHED from the provider's own documentation and are quoted
+  verbatim.
+envelope:
+  login:
+    field: status
+    transport_status: 200
+    success_value: login_successful
+    note: >-
+      A successful login also returns "token" and "user_id". Every failure value
+      below is returned with HTTP 200 and no token.
+  rest:
+    field: null
+    note: No documented error body shape for non-login operations.
+login_statuses:
+- code: login_successful
+  meaning: Credentials accepted.
+  returns: [token, user_id, status]
+  action: >-
+    Store the token and send it as "Authorization: Token <token>" on every later
+    request.
+- code: error_missing_key
+  meaning: A required credential field was absent from the request.
+  action: Send both username and password as application/x-www-form-urlencoded body fields.
+- code: error_account_disabled
+  meaning: The Badger account exists but has been disabled.
+  action: Contact support@badgermapping.com; not retryable by the client.
+- code: error_account_does_not_exist
+  meaning: >-
+    No such account - returned for both a missing account AND a bad password.
+    The two cases are deliberately indistinguishable.
+  action: Verify the username; do not treat as "user not found" for account provisioning.
+- code: error_non_post_request
+  meaning: /login/ was called with a method other than POST.
+  action: Use POST with a form-encoded body.
+- code: error_trial_expired
+  meaning: The team's trial period has ended.
+  action: Convert to a paid plan; not retryable.
+- code: error_account_delinquent
+  meaning: The account is past due on payment.
+  action: Resolve billing; not retryable.
+login_status_count: 7
+http_problems:
+- status: 400
+  title: Invalid request
+  meaning: Required fields missing or malformed on a create.
+  source_operations:
+  - openapi/badger-maps-accounts-api-openapi.yml#createAccount
+  - openapi/badger-maps-check-ins-api-openapi.yml#createCheckIn
+  note: >-
+    createAccount requires last_name, address and account_owner; phone_number and
+    email are required keys whose values may be empty.
+- status: 401
+  title: Unauthenticated
+  meaning: Missing, malformed or unenabled API token.
+  source_operations:
+  - openapi/badger-maps-users-api-openapi.yml#login
+  - openapi/badger-maps-users-api-openapi.yml#getProfile
+  - openapi/badger-maps-users-api-openapi.yml#searchUsers
+  - openapi/badger-maps-accounts-api-openapi.yml#listAccounts
+  - openapi/badger-maps-accounts-api-openapi.yml#createAccount
+  - openapi/badger-maps-accounts-api-openapi.yml#getAccount
+  - openapi/badger-maps-accounts-api-openapi.yml#updateAccount
+  - openapi/badger-maps-accounts-api-openapi.yml#deleteAccount
+  - openapi/badger-maps-locations-api-openapi.yml#updateLocation
+  - openapi/badger-maps-check-ins-api-openapi.yml#listCheckIns
+  - openapi/badger-maps-check-ins-api-openapi.yml#createCheckIn
+  - openapi/badger-maps-routes-api-openapi.yml#listRoutes
+  - openapi/badger-maps-routes-api-openapi.yml#getRoute
+  note: >-
+    A syntactically valid key that support has not enabled will also fail here -
+    key enablement is a manual step, not a self-serve one.
+- status: 404
+  title: Not found
+  meaning: The addressed account, location or route does not exist or is not visible to this token.
+  source_operations:
+  - openapi/badger-maps-accounts-api-openapi.yml#getAccount
+  - openapi/badger-maps-accounts-api-openapi.yml#updateAccount
+  - openapi/badger-maps-accounts-api-openapi.yml#deleteAccount
+  - openapi/badger-maps-locations-api-openapi.yml#updateLocation
+  - openapi/badger-maps-routes-api-openapi.yml#getRoute
+gaps:
+- No RFC 9457 application/problem+json anywhere.
+- No documented 429 body or Retry-After behaviour despite a published 25k/day/team quota.
+- No error code registry for non-login operations.
+- Login collapses "unknown user" and "wrong password" into one status, which is good for
+  enumeration resistance but means a client cannot distinguish provisioning failure from a typo.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

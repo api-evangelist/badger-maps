@@ -1,0 +1,395 @@
+{
+  "item": [
+    {
+      "id": "c3450926-8246-4669-9549-21311b7d6ba7",
+      "name": "Check-Ins",
+      "description": {
+        "content": "Timestamped activity logs recorded against an account (the /appointments/ resource).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "14f9a606-93be-4658-9c38-59790c72283b",
+          "name": "List check-ins",
+          "request": {
+            "name": "List check-ins",
+            "description": {
+              "content": "Returns the check-ins recorded against an account. Filter by account with the `customer_id` query parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "appointments",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "customer_id",
+                  "value": "<integer>",
+                  "description": "The account (customer) id to return check-ins for."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a6971100-8e5f-4e62-8282-07953436d463",
+              "name": "A list of check-ins.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "appointments",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "customer_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 5437,\n    \"customer\": 6625,\n    \"type\": \"string\",\n    \"comments\": \"string\",\n    \"log_datetime\": \"1968-04-07T02:15:23.605Z\",\n    \"created_by\": 7959\n  },\n  {\n    \"id\": 9261,\n    \"customer\": 384,\n    \"type\": \"string\",\n    \"comments\": \"string\",\n    \"log_datetime\": \"1971-05-23T18:20:48.120Z\",\n    \"created_by\": 3252\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7e6c77b4-bdeb-4f85-9631-f2d29b85237d",
+              "name": "Authentication is missing or the token is invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "appointments",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "customer_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"status\": 3614\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e6dd62e2-46d1-4ed6-a657-8da72b179747",
+          "name": "Create a check-in",
+          "request": {
+            "name": "Create a check-in",
+            "description": {
+              "content": "Records a new check-in against an account. Requires the account (customer) id; a type and free-text comments are optional.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "appointments",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customer\": \"<integer>\",\n  \"type\": \"<string>\",\n  \"comments\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b04b6e2c-f8b4-4e75-9fe4-138acbaa50a4",
+              "name": "The created check-in.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "appointments",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer\": \"<integer>\",\n  \"type\": \"<string>\",\n  \"comments\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1406,\n  \"customer\": 1713,\n  \"type\": \"string\",\n  \"comments\": \"string\",\n  \"log_datetime\": \"2002-07-31T20:04:33.209Z\",\n  \"created_by\": 9577\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "15902f84-7271-404c-8a79-ec2f97c4e269",
+              "name": "The request was invalid or missing required fields.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "appointments",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer\": \"<integer>\",\n  \"type\": \"<string>\",\n  \"comments\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"status\": 3614\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d4f03ca-a19d-4381-b8d5-3ccf3eb05773",
+              "name": "Authentication is missing or the token is invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "appointments",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer\": \"<integer>\",\n  \"type\": \"<string>\",\n  \"comments\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"status\": 3614\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://badgerapis.badgermapping.com/api/2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7dd38e96-7e1b-4864-b4c7-b3c2f131fcd2",
+    "name": "Badger Maps Accounts Check-Ins API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for Badger Maps, field sales route-planning and CRM software. The API lets teams programmatically manage accounts (customers), account locations, optimized routes, check-ins (served under the /appointments/ resource), and users. Base URL: https://badgerapis.badgermapping.com/api/2. All requests are authenticated with a token supplied in an `Authorization: Token <api_key>` header. API/Developer Key access is included with paid plans (max 25k requests per day, per team); the key must be enabled by contacting Badger Maps support (support@badgermapping.com).\nEndpoint paths, methods, and the core request/response fields below are grounded in Badger Maps' published API Blueprint (Apiary). Fields marked \"modeled\" in descriptions are reasonable inferences where the public docs are thin and require an enabled key to verify exhaustively.\n\nContact Support:\n Name: Badger Maps Support\n Email: support@badgermapping.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,4 +1,4 @@
-generated: '2026-07-11'
+generated: '2026-08-13'
 method: probed
 source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
 hosts:
@@ -12,20 +12,20 @@ hosts:
   https: true
   tls_version: TLSv1.3
   cert_expires: Oct 18 23:59:59 2026 GMT
-  hsts: false
+  hsts: null
 - host: badgerapis.badgermapping.com
   https: true
   tls_version: TLSv1.3
-  cert_expires: Aug 27 03:46:46 2026 GMT
+  cert_expires: Oct 26 02:48:37 2026 GMT
   hsts: true
   hsts_max_age: 31536000
 domains:
 - domain: badgermapping.com
   dnssec: false
   caa:
-  - 0 issue "letsencrypt.org"
-  - 0 issue "godaddy.com"
   - 0 issue "pki.goog"
+  - 0 issue "godaddy.com"
+  - 0 issue "letsencrypt.org"
   spf: true
   dmarc: true
   dmarc_policy: quarantine

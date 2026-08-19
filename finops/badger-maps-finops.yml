@@ -1,3 +1,6 @@
+generated: '2026-08-13'
+method: derived
+source: plans/badger-maps-plans-pricing.yml
 specification: FinOps Framework
 specificationVersion: '1.0'
 schema: https://www.finops.org/framework/

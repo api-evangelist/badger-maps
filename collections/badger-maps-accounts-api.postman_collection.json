@@ -1,0 +1,1040 @@
+{
+  "item": [
+    {
+      "id": "d77b6176-39fa-4607-a967-b76a34f6c8f2",
+      "name": "Accounts",
+      "description": {
+        "content": "Accounts (customers) - the businesses and contacts a rep maps and visits.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1d4168fe-37c4-4a50-8a37-91a043c4d650",
+          "name": "List accounts",
+          "request": {
+            "name": "List accounts",
+            "description": {
+              "content": "Returns an array of accounts (customers) owned by the authenticated user. The optional `rn` parameter (modeled) scopes the list to a managed user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "rn",
+                  "value": "<integer>",
+                  "description": "Optional managed-user id to scope the list to (modeled)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "34e106cf-501d-448e-b75f-6adc3bceef6a",
+              "name": "A list of accounts.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "rn",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 8125,\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"email\": \"ZKUWtTwie1243T@zHfySGyZeuOpqRuqWQihPJWmGVNaBekLa.lf\",\n    \"phone_number\": \"string\",\n    \"account_owner\": 3497,\n    \"external_id\": \"string\",\n    \"locations\": [\n      {\n        \"id\": 6176,\n        \"address\": \"string\",\n        \"lat\": 7526.90663944106,\n        \"lng\": 4078.4207631672175\n      },\n      {\n        \"id\": 8963,\n        \"address\": \"string\",\n        \"lat\": 8011.355777803967,\n        \"lng\": 273.1592392967541\n      }\n    ],\n    \"custom_text\": {\n      \"key_0\": 8547\n    }\n  },\n  {\n    \"id\": 8234,\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"email\": \"7-9@BJOpUaguXmdppjVzAQiweKTBRY.qaj\",\n    \"phone_number\": \"string\",\n    \"account_owner\": 8886,\n    \"external_id\": \"string\",\n    \"locations\": [\n      {\n        \"id\": 446,\n        \"address\": \"string\",\n        \"lat\": 3076.2231132777306,\n        \"lng\": 5021.271638240711\n      },\n      {\n        \"id\": 4809,\n        \"address\": \"string\",\n        \"lat\": 1862.9207435879468,\n        \"lng\": 9580.712366994596\n      }\n    ],\n    \"custom_text\": {\n      \"key_0\": false,\n      \"key_1\": false,\n      \"key_2\": 1978\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0fd60b30-cd9f-490b-b563-04f23290654d",
+              "name": "Authentication is missing or the token is invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "rn",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"status\": 8376\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ffb67524-8039-4a1f-88e3-1c618c6a5763",
+          "name": "Create an account",
+          "request": {
+            "name": "Create an account",
+            "description": {
+              "content": "Creates a new account (customer). Requires at least a name and address plus an account owner; latitude/longitude and custom data fields are optional.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"last_name\": \"<string>\",\n  \"address\": \"<string>\",\n  \"account_owner\": \"<integer>\",\n  \"first_name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone_number\": \"<string>\",\n  \"lat\": \"<float>\",\n  \"lng\": \"<float>\",\n  \"custom_text\": {\n    \"key_0\": 3344,\n    \"key_1\": false\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "10a7d78e-3263-4e93-a23d-9bfc8719b936",
+              "name": "The created account.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"last_name\": \"<string>\",\n  \"address\": \"<string>\",\n  \"account_owner\": \"<integer>\",\n  \"first_name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone_number\": \"<string>\",\n  \"lat\": \"<float>\",\n  \"lng\": \"<float>\",\n  \"custom_text\": {\n    \"key_0\": 8349,\n    \"key_1\": 9375.99818311116\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3859,\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"email\": \"1fX3@glFWLAaQPXBWrREHhrkmev.on\",\n  \"phone_number\": \"string\",\n  \"account_owner\": 4840,\n  \"external_id\": \"string\",\n  \"locations\": [\n    {\n      \"id\": 2541,\n      \"address\": \"string\",\n      \"lat\": 2546.971350495635,\n      \"lng\": 4386.294479822877\n    },\n    {\n      \"id\": 4378,\n      \"address\": \"string\",\n      \"lat\": 2403.8861321574136,\n      \"lng\": 9850.085255807071\n    }\n  ],\n  \"custom_text\": {\n    \"key_0\": true,\n    \"key_1\": false,\n    \"key_2\": 1530.3908762891283\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "979a8e26-a831-4fac-8401-2e374bc62f05",
+              "name": "The request was invalid or missing required fields.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"last_name\": \"<string>\",\n  \"address\": \"<string>\",\n  \"account_owner\": \"<integer>\",\n  \"first_name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone_number\": \"<string>\",\n  \"lat\": \"<float>\",\n  \"lng\": \"<float>\",\n  \"custom_text\": {\n    \"key_0\": 8349,\n    \"key_1\": 9375.99818311116\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"status\": 8376\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7852fc45-8107-4c0c-a235-e5f7e977d14b",
+              "name": "Authentication is missing or the token is invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"last_name\": \"<string>\",\n  \"address\": \"<string>\",\n  \"account_owner\": \"<integer>\",\n  \"first_name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone_number\": \"<string>\",\n  \"lat\": \"<float>\",\n  \"lng\": \"<float>\",\n  \"custom_text\": {\n    \"key_0\": 8349,\n    \"key_1\": 9375.99818311116\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"status\": 8376\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3d567782-5904-40b4-b8b3-bb4908080c33",
+          "name": "Retrieve an account",
+          "request": {
+            "name": "Retrieve an account",
+            "description": {
+              "content": "Returns a single account with its locations and custom fields.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ":account_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "account_id",
+                  "description": "(Required) The account (customer) id."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d83ef6cd-8642-45f7-b48a-6d41e7466d01",
+              "name": "The requested account.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":account_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "account_id",
+                      "description": "(Required) The account (customer) id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3859,\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"email\": \"1fX3@glFWLAaQPXBWrREHhrkmev.on\",\n  \"phone_number\": \"string\",\n  \"account_owner\": 4840,\n  \"external_id\": \"string\",\n  \"locations\": [\n    {\n      \"id\": 2541,\n      \"address\": \"string\",\n      \"lat\": 2546.971350495635,\n      \"lng\": 4386.294479822877\n    },\n    {\n      \"id\": 4378,\n      \"address\": \"string\",\n      \"lat\": 2403.8861321574136,\n      \"lng\": 9850.085255807071\n    }\n  ],\n  \"custom_text\": {\n    \"key_0\": true,\n    \"key_1\": false,\n    \"key_2\": 1530.3908762891283\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "20e30f11-5d68-4bd0-b889-061f1e01465e",
+              "name": "Authentication is missing or the token is invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":account_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "account_id",
+                      "description": "(Required) The account (customer) id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"status\": 8376\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a40e9456-0603-46af-a563-7e1e06ff7b0d",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":account_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "account_id",
+                      "description": "(Required) The account (customer) id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"status\": 8376\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6549208b-eb4d-4c7d-a720-22551dddd3da",
+          "name": "Update an account",
+          "request": {
+            "name": "Update an account",
+            "description": {
+              "content": "Partially updates an account - for example custom_text fields or a change of account_owner.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ":account_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "account_id",
+                  "description": "(Required) The account (customer) id."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"last_name\": \"<string>\",\n  \"address\": \"<string>\",\n  \"account_owner\": \"<integer>\",\n  \"first_name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone_number\": \"<string>\",\n  \"lat\": \"<float>\",\n  \"lng\": \"<float>\",\n  \"custom_text\": {\n    \"key_0\": 3344,\n    \"key_1\": false\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c5d7beb8-c539-4683-a360-c14c9a5330ba",
+              "name": "The updated account.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":account_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "account_id",
+                      "description": "(Required) The account (customer) id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"last_name\": \"<string>\",\n  \"address\": \"<string>\",\n  \"account_owner\": \"<integer>\",\n  \"first_name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone_number\": \"<string>\",\n  \"lat\": \"<float>\",\n  \"lng\": \"<float>\",\n  \"custom_text\": {\n    \"key_0\": 8349,\n    \"key_1\": 9375.99818311116\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3859,\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"email\": \"1fX3@glFWLAaQPXBWrREHhrkmev.on\",\n  \"phone_number\": \"string\",\n  \"account_owner\": 4840,\n  \"external_id\": \"string\",\n  \"locations\": [\n    {\n      \"id\": 2541,\n      \"address\": \"string\",\n      \"lat\": 2546.971350495635,\n      \"lng\": 4386.294479822877\n    },\n    {\n      \"id\": 4378,\n      \"address\": \"string\",\n      \"lat\": 2403.8861321574136,\n      \"lng\": 9850.085255807071\n    }\n  ],\n  \"custom_text\": {\n    \"key_0\": true,\n    \"key_1\": false,\n    \"key_2\": 1530.3908762891283\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b86a56b4-65af-47bf-9415-93b741574b5c",
+              "name": "Authentication is missing or the token is invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":account_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "account_id",
+                      "description": "(Required) The account (customer) id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"last_name\": \"<string>\",\n  \"address\": \"<string>\",\n  \"account_owner\": \"<integer>\",\n  \"first_name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone_number\": \"<string>\",\n  \"lat\": \"<float>\",\n  \"lng\": \"<float>\",\n  \"custom_text\": {\n    \"key_0\": 8349,\n    \"key_1\": 9375.99818311116\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"status\": 8376\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "363d0e32-f66b-4edc-9e8f-09111e420f0a",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":account_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "account_id",
+                      "description": "(Required) The account (customer) id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"last_name\": \"<string>\",\n  \"address\": \"<string>\",\n  \"account_owner\": \"<integer>\",\n  \"first_name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone_number\": \"<string>\",\n  \"lat\": \"<float>\",\n  \"lng\": \"<float>\",\n  \"custom_text\": {\n    \"key_0\": 8349,\n    \"key_1\": 9375.99818311116\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"status\": 8376\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dea8f432-47c9-4934-86cf-b5c5385c402f",
+          "name": "Delete an account",
+          "request": {
+            "name": "Delete an account",
+            "description": {
+              "content": "Deletes an account (customer). Returns 204 No Content on success.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ":account_id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "account_id",
+                  "description": "(Required) The account (customer) id."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7322ec2d-0476-4d04-a42c-8f43a05f0dd8",
+              "name": "The account was deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":account_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "account_id",
+                      "description": "(Required) The account (customer) id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d0be0cfc-ceeb-4f49-9263-b358232d17a7",
+              "name": "Authentication is missing or the token is invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":account_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "account_id",
+                      "description": "(Required) The account (customer) id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"status\": 8376\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f84acd56-17ea-425b-9fc9-2064ae453e3f",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":account_id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "account_id",
+                      "description": "(Required) The account (customer) id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"status\": 8376\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://badgerapis.badgermapping.com/api/2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b5679339-566a-40e9-b0e6-82eb7188b3f7",
+    "name": "Badger Maps Accounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for Badger Maps, field sales route-planning and CRM software. The API lets teams programmatically manage accounts (customers), account locations, optimized routes, check-ins (served under the /appointments/ resource), and users. Base URL: https://badgerapis.badgermapping.com/api/2. All requests are authenticated with a token supplied in an `Authorization: Token <api_key>` header. API/Developer Key access is included with paid plans (max 25k requests per day, per team); the key must be enabled by contacting Badger Maps support (support@badgermapping.com).\nEndpoint paths, methods, and the core request/response fields below are grounded in Badger Maps' published API Blueprint (Apiary). Fields marked \"modeled\" in descriptions are reasonable inferences where the public docs are thin and require an enabled key to verify exhaustively.\n\nContact Support:\n Name: Badger Maps Support\n Email: support@badgermapping.com",
+      "type": "text/plain"
+    }
+  }
+}

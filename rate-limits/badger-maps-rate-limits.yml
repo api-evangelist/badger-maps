@@ -1,3 +1,6 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.badgermapping.com/pricing/
 specification: API Commons Rate Limits
 specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
@@ -32,6 +35,24 @@ sources:
 - https://badgerupdatedapi.docs.apiary.io/
 responseCodes:
   throttled: 429
+  published: false
+  note: >-
+    429 is the conventional REST value and is MODELED, not published. Badger Maps
+    documents no status code for quota exhaustion. Verify against a live enabled
+    key before relying on it.
+headers:
+  published: false
+  ratelimit_limit: null
+  ratelimit_remaining: null
+  ratelimit_reset: null
+  retry_after: null
+  note: >-
+    No X-RateLimit-* or RFC 9238 RateLimit-* response headers are documented, and
+    no Retry-After contract. An agent cannot see how much of the shared
+    25,000/day team quota is left, which is the practical limitation here: the
+    number is public but the runtime signal is not. Confirmed absent from the
+    provider's published API Blueprint on 2026-08-13.
+limit_count: 3
 limits:
 - name: Daily API Requests
   scope: team

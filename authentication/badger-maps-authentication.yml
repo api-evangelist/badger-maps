@@ -1,17 +1,83 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/badger-maps-openapi.yml
+generated: '2026-08-13'
+method: searched
+source: https://jsapi.apiary.io/apis/badgerupdatedapi.apib
+docs: https://badgerupdatedapi.docs.apiary.io/#introduction/authorization
+provider: Badger Maps
+providerId: badger-maps
+description: >-
+  Badger Maps API v2 uses a single static token sent in an Authorization header
+  with the non-standard scheme word "Token" (not "Bearer"). There is no OAuth,
+  no OIDC, no mTLS, no signed requests and no scope model - one key carries the
+  full permission set of the user it belongs to. Upgraded from derived to
+  searched on 2026-08-13 against the provider's own published API Blueprint,
+  which documents both the header format and the credential-issuing endpoint.
 summary:
   types:
   - apiKey
   api_key_in:
   - header
+  oauth2_flows: []
+  scopes: none
 schemes:
 - name: tokenAuth
   type: apiKey
   in: header
   parameter: Authorization
-  description: 'Token authentication. Send `Authorization: Token <api_key>`. Contact Badger
-    Maps support to have your API/Developer Key enabled.'
+  scheme_word: Token
+  format: 'Authorization: Token <api_key>'
+  example_placeholder: abcdefg12345678
+  description: >-
+    Token authentication. Every request carries "Authorization: Token <api_key>".
+    The scheme word is literally "Token" - an RFC 6750 "Bearer" prefix will not
+    authenticate.
   sources:
-  - openapi/badger-maps-openapi.yml
+  - openapi/_original/badger-maps-openapi.yml
+  - openapi/_original/badger-maps-apiary-blueprint.apib
+credential_issuance:
+  self_serve: false
+  gate: >-
+    API/Developer Key access is included with paid plans but must be switched on
+    per team by Badger Maps support. Email support@badgermapping.com to have the
+    key enabled. Until it is enabled the key returns 401 exactly as a bad key
+    does, which makes the gate hard to diagnose from responses alone.
+  contact: support@badgermapping.com
+  runtime_exchange:
+    operation: openapi/badger-maps-users-api-openapi.yml#login
+    path: POST /login/
+    request_encoding: application/x-www-form-urlencoded
+    request_fields: [username, password]
+    response_fields: [token, status, user_id]
+    note: >-
+      Returns HTTP 200 on failure as well as success; the outcome is in the
+      "status" string. See errors/badger-maps-error-codes.yml for the full status
+      vocabulary.
+authorization_model:
+  scopes: false
+  roles:
+    manager: >-
+      Profile carries is_manager. A manager token may list a managed user's
+      accounts by passing the rn query parameter to GET /customers/, and may
+      reassign an account by sending account_owner on PATCH /customers/{id}/.
+  per_key_permissions: false
+  note: >-
+    No scope, audience or permission surface. Authorization is entirely a
+    property of the user the token belongs to.
+rotation_and_revocation:
+  documented: false
+  note: >-
+    No key rotation, expiry, or revocation procedure is published, and no
+    endpoint lists or revokes issued keys.
+transport:
+  https_required: true
+  tls_version_observed: TLSv1.3
+  hsts: true
+  source: security/badger-maps-domain-security.yml
+gaps:
+- No OAuth 2.0 or OpenID Connect; /.well-known/openid-configuration and
+  /.well-known/oauth-authorization-server both 404 on every host.
+- No scopes, so a key cannot be least-privileged for an agent or an integration.
+- No documented key rotation, expiry or revocation.
+- Non-standard "Token" scheme word rather than RFC 6750 "Bearer".
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

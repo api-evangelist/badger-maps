@@ -87,7 +87,7 @@ apis:
   humanURL: https://badgerupdatedapi.docs.apiary.io/
   baseURL: https://badgerapis.badgermapping.com/api/2
   tags:
-  - Check-ins
+  - Check-in
   tags_raw:
   - Check-Ins
   properties:
@@ -117,6 +117,8 @@ apis:
   humanURL: https://badgerupdatedapi.docs.apiary.io/
   baseURL: https://badgerapis.badgermapping.com/api/2
   tags:
+  - Location
+  tags_raw:
   - Locations
   properties:
   - type: OpenAPI

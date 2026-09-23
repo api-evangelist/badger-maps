@@ -1,11 +1,7 @@
 {
   "provider": "badger-maps",
   "sources": [
-    "badger-maps-accounts-api-openapi.yml",
-    "badger-maps-check-ins-api-openapi.yml",
-    "badger-maps-locations-api-openapi.yml",
-    "badger-maps-routes-api-openapi.yml",
-    "badger-maps-users-api-openapi.yml"
+    "_original/badger-maps-openapi.yml"
   ],
   "outputs": [
     "badger-maps-accounts-api-openapi.yml",
@@ -17,6 +13,16 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "badger-maps-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "badger-maps-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "badger-maps-check-ins-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "badger-maps-locations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "badger-maps-routes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "badger-maps-users-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

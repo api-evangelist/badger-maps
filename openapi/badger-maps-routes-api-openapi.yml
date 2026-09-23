@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Badger Maps Accounts Routes API
-  description: 'REST API for Badger Maps, field sales route-planning and CRM software. The API lets teams programmatically manage accounts (customers), account locations, optimized routes, check-ins (served under the /appointments/ resource), and users. Base URL: https://badgerapis.badgermapping.com/api/2. All requests are authenticated with a token supplied in an `Authorization: Token <api_key>` header. API/Developer Key access is included with paid plans (max 25k requests per day, per team); the key must be enabled by contacting Badger Maps support (support@badgermapping.com).
-
-    Endpoint paths, methods, and the core request/response fields below are grounded in Badger Maps'' published API Blueprint (Apiary). Fields marked "modeled" in descriptions are reasonable inferences where the public docs are thin and require an enabled key to verify exhaustively.'
+  title: Badger Maps Routes API
+  description: REST API for Badger Maps, field sales route-planning and CRM software.
   version: '2.0'
   contact:
     name: Badger Maps Support
@@ -57,20 +55,20 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    Unauthorized:
-      description: Authentication is missing or the token is invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    Location:
+      type: object
+      properties:
+        id:
+          type: integer
+        address:
+          type: string
+        lat:
+          type: number
+          format: float
+        lng:
+          type: number
+          format: float
     Waypoint:
       type: object
       properties:
@@ -87,19 +85,22 @@ components:
         duration:
           type: integer
           description: Planned stop duration in minutes (modeled).
-    Location:
+    Error:
       type: object
       properties:
-        id:
-          type: integer
-        address:
+        detail:
           type: string
-        lat:
-          type: number
-          format: float
-        lng:
-          type: number
-          format: float
+        status:
+          type: integer
+    Route:
+      allOf:
+      - $ref: '#/components/schemas/RouteSummary'
+      - type: object
+        properties:
+          waypoints:
+            type: array
+            items:
+              $ref: '#/components/schemas/Waypoint'
     RouteSummary:
       type: object
       properties:
@@ -110,22 +111,6 @@ components:
         route_date:
           type: string
           format: date
-    Route:
-      allOf:
-      - $ref: '#/components/schemas/RouteSummary'
-      - type: object
-        properties:
-          waypoints:
-            type: array
-            items:
-              $ref: '#/components/schemas/Waypoint'
-    Error:
-      type: object
-      properties:
-        detail:
-          type: string
-        status:
-          type: integer
   parameters:
     RouteId:
       name: route_id
@@ -134,6 +119,19 @@ components:
       description: The route id.
       schema:
         type: integer
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication is missing or the token is invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     tokenAuth:
       type: apiKey

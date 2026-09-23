@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Badger Maps Accounts API
-  description: 'REST API for Badger Maps, field sales route-planning and CRM software. The API lets teams programmatically manage accounts (customers), account locations, optimized routes, check-ins (served under the /appointments/ resource), and users. Base URL: https://badgerapis.badgermapping.com/api/2. All requests are authenticated with a token supplied in an `Authorization: Token <api_key>` header. API/Developer Key access is included with paid plans (max 25k requests per day, per team); the key must be enabled by contacting Badger Maps support (support@badgermapping.com).
-
-    Endpoint paths, methods, and the core request/response fields below are grounded in Badger Maps'' published API Blueprint (Apiary). Fields marked "modeled" in descriptions are reasonable inferences where the public docs are thin and require an enabled key to verify exhaustively.'
+  description: REST API for Badger Maps, field sales route-planning and CRM software.
   version: '2.0'
   contact:
     name: Badger Maps Support
@@ -124,34 +122,19 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Account:
+    Location:
       type: object
       properties:
         id:
           type: integer
-        first_name:
+        address:
           type: string
-        last_name:
-          type: string
-        email:
-          type: string
-          format: email
-        phone_number:
-          type: string
-        account_owner:
-          type: integer
-          description: User id of the account owner.
-        external_id:
-          type: string
-          description: Identifier of the account in an external system (e.g. CRM).
-        locations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Location'
-        custom_text:
-          type: object
-          description: Custom text data fields configured on the account.
-          additionalProperties: true
+        lat:
+          type: number
+          format: float
+        lng:
+          type: number
+          format: float
     AccountInput:
       type: object
       required:
@@ -181,19 +164,6 @@ components:
         custom_text:
           type: object
           additionalProperties: true
-    Location:
-      type: object
-      properties:
-        id:
-          type: integer
-        address:
-          type: string
-        lat:
-          type: number
-          format: float
-        lng:
-          type: number
-          format: float
     Error:
       type: object
       properties:
@@ -201,6 +171,34 @@ components:
           type: string
         status:
           type: integer
+    Account:
+      type: object
+      properties:
+        id:
+          type: integer
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+          format: email
+        phone_number:
+          type: string
+        account_owner:
+          type: integer
+          description: User id of the account owner.
+        external_id:
+          type: string
+          description: Identifier of the account in an external system (e.g. CRM).
+        locations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Location'
+        custom_text:
+          type: object
+          description: Custom text data fields configured on the account.
+          additionalProperties: true
   responses:
     Unauthorized:
       description: Authentication is missing or the token is invalid.
@@ -208,14 +206,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was invalid or missing required fields.
+    NotFound:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
+    BadRequest:
+      description: The request was invalid or missing required fields.
       content:
         application/json:
           schema:

@@ -55,6 +55,19 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication is missing or the token is invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Location:
       type: object
@@ -69,6 +82,16 @@ components:
         lng:
           type: number
           format: float
+    RouteSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        route_date:
+          type: string
+          format: date
     Waypoint:
       type: object
       properties:
@@ -85,13 +108,6 @@ components:
         duration:
           type: integer
           description: Planned stop duration in minutes (modeled).
-    Error:
-      type: object
-      properties:
-        detail:
-          type: string
-        status:
-          type: integer
     Route:
       allOf:
       - $ref: '#/components/schemas/RouteSummary'
@@ -101,16 +117,13 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/Waypoint'
-    RouteSummary:
+    Error:
       type: object
       properties:
-        id:
+        detail:
+          type: string
+        status:
           type: integer
-        name:
-          type: string
-        route_date:
-          type: string
-          format: date
   parameters:
     RouteId:
       name: route_id
@@ -119,19 +132,6 @@ components:
       description: The route id.
       schema:
         type: integer
-  responses:
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication is missing or the token is invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     tokenAuth:
       type: apiKey

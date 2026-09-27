@@ -65,39 +65,7 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    BadRequest:
-      description: The request was invalid or missing required fields.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication is missing or the token is invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      properties:
-        detail:
-          type: string
-        status:
-          type: integer
-    CheckInInput:
-      type: object
-      required:
-      - customer
-      properties:
-        customer:
-          type: integer
-          description: The account (customer) id to log the check-in against.
-        type:
-          type: string
-        comments:
-          type: string
     CheckIn:
       type: object
       description: A check-in log against an account (served under /appointments/).
@@ -118,6 +86,38 @@ components:
         created_by:
           type: integer
           description: User id of the check-in author.
+    CheckInInput:
+      type: object
+      required:
+      - customer
+      properties:
+        customer:
+          type: integer
+          description: The account (customer) id to log the check-in against.
+        type:
+          type: string
+        comments:
+          type: string
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+        status:
+          type: integer
+  responses:
+    Unauthorized:
+      description: Authentication is missing or the token is invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was invalid or missing required fields.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     tokenAuth:
       type: apiKey

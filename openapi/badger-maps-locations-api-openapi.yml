@@ -70,6 +70,13 @@ components:
         lng:
           type: number
           format: float
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+        status:
+          type: integer
     LocationInput:
       type: object
       required:
@@ -83,13 +90,6 @@ components:
         lng:
           type: number
           format: float
-    Error:
-      type: object
-      properties:
-        detail:
-          type: string
-        status:
-          type: integer
   parameters:
     LocationId:
       name: location_id

@@ -66,6 +66,25 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    CheckInInput:
+      type: object
+      required:
+      - customer
+      properties:
+        customer:
+          type: integer
+          description: The account (customer) id to log the check-in against.
+        type:
+          type: string
+        comments:
+          type: string
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+        status:
+          type: integer
     CheckIn:
       type: object
       description: A check-in log against an account (served under /appointments/).
@@ -86,25 +105,6 @@ components:
         created_by:
           type: integer
           description: User id of the check-in author.
-    CheckInInput:
-      type: object
-      required:
-      - customer
-      properties:
-        customer:
-          type: integer
-          description: The account (customer) id to log the check-in against.
-        type:
-          type: string
-        comments:
-          type: string
-    Error:
-      type: object
-      properties:
-        detail:
-          type: string
-        status:
-          type: integer
   responses:
     Unauthorized:
       description: Authentication is missing or the token is invalid.

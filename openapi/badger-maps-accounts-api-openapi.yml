@@ -121,6 +121,14 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    AccountId:
+      name: account_id
+      in: path
+      required: true
+      description: The account (customer) id.
+      schema:
+        type: integer
   responses:
     NotFound:
       description: The requested resource was not found.
@@ -154,6 +162,13 @@ components:
         lng:
           type: number
           format: float
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+        status:
+          type: integer
     AccountInput:
       type: object
       required:
@@ -211,21 +226,6 @@ components:
           type: object
           description: Custom text data fields configured on the account.
           additionalProperties: true
-    Error:
-      type: object
-      properties:
-        detail:
-          type: string
-        status:
-          type: integer
-  parameters:
-    AccountId:
-      name: account_id
-      in: path
-      required: true
-      description: The account (customer) id.
-      schema:
-        type: integer
   securitySchemes:
     tokenAuth:
       type: apiKey

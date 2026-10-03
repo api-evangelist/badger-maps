@@ -90,6 +90,23 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    AuthResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          description: API token to send in the Authorization header.
+        status:
+          type: string
+        user_id:
+          type: integer
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+        status:
+          type: integer
     Profile:
       type: object
       properties:
@@ -130,23 +147,6 @@ components:
         email:
           type: string
           format: email
-    AuthResponse:
-      type: object
-      properties:
-        token:
-          type: string
-          description: API token to send in the Authorization header.
-        status:
-          type: string
-        user_id:
-          type: integer
-    Error:
-      type: object
-      properties:
-        detail:
-          type: string
-        status:
-          type: integer
   responses:
     Unauthorized:
       description: Authentication is missing or the token is invalid.

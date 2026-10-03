@@ -55,20 +55,17 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication is missing or the token is invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    RouteSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        route_date:
+          type: string
+          format: date
     Location:
       type: object
       properties:
@@ -82,16 +79,13 @@ components:
         lng:
           type: number
           format: float
-    RouteSummary:
+    Error:
       type: object
       properties:
-        id:
+        detail:
+          type: string
+        status:
           type: integer
-        name:
-          type: string
-        route_date:
-          type: string
-          format: date
     Waypoint:
       type: object
       properties:
@@ -117,13 +111,6 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/Waypoint'
-    Error:
-      type: object
-      properties:
-        detail:
-          type: string
-        status:
-          type: integer
   parameters:
     RouteId:
       name: route_id
@@ -132,6 +119,19 @@ components:
       description: The route id.
       schema:
         type: integer
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication is missing or the token is invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     tokenAuth:
       type: apiKey

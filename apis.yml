@@ -203,6 +203,9 @@ apis:
   - type: APIReference
     url: https://badgerupdatedapi.docs.apiary.io/#reference/users
 common:
+- type: CapabilityMap
+  url: capabilities/badger-maps-capability-edges.yml
+  name: Badger Maps Business Capability Map
 - type: AgenticAccess
   url: agentic-access/badger-maps-agentic-access.yml
 - type: DomainSecurity

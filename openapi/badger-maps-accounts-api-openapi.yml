@@ -121,54 +121,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    AccountId:
-      name: account_id
-      in: path
-      required: true
-      description: The account (customer) id.
-      schema:
-        type: integer
-  responses:
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication is missing or the token is invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was invalid or missing required fields.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Location:
-      type: object
-      properties:
-        id:
-          type: integer
-        address:
-          type: string
-        lat:
-          type: number
-          format: float
-        lng:
-          type: number
-          format: float
-    Error:
-      type: object
-      properties:
-        detail:
-          type: string
-        status:
-          type: integer
     AccountInput:
       type: object
       required:
@@ -198,6 +151,26 @@ components:
         custom_text:
           type: object
           additionalProperties: true
+    Location:
+      type: object
+      properties:
+        id:
+          type: integer
+        address:
+          type: string
+        lat:
+          type: number
+          format: float
+        lng:
+          type: number
+          format: float
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+        status:
+          type: integer
     Account:
       type: object
       properties:
@@ -226,6 +199,33 @@ components:
           type: object
           description: Custom text data fields configured on the account.
           additionalProperties: true
+  parameters:
+    AccountId:
+      name: account_id
+      in: path
+      required: true
+      description: The account (customer) id.
+      schema:
+        type: integer
+  responses:
+    Unauthorized:
+      description: Authentication is missing or the token is invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was invalid or missing required fields.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     tokenAuth:
       type: apiKey

@@ -100,13 +100,18 @@ components:
           type: string
         user_id:
           type: integer
-    Error:
+    User:
       type: object
       properties:
-        detail:
-          type: string
-        status:
+        id:
           type: integer
+        username:
+          type: string
+        first_name:
+          type: string
+        email:
+          type: string
+          format: email
     Profile:
       type: object
       properties:
@@ -135,18 +140,13 @@ components:
           type: object
           description: Profile settings (modeled).
           additionalProperties: true
-    User:
+    Error:
       type: object
       properties:
-        id:
+        detail:
+          type: string
+        status:
           type: integer
-        username:
-          type: string
-        first_name:
-          type: string
-        email:
-          type: string
-          format: email
   responses:
     Unauthorized:
       description: Authentication is missing or the token is invalid.

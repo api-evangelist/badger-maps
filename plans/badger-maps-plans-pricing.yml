@@ -241,3 +241,66 @@ plans:
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - hybrid
+  - seat
+  - subscription
+  units:
+  - request
+  - seat
+  plans:
+  - name: Business
+    access: paid
+    model: hybrid
+    model_how: derived
+    units:
+    - request
+    - seat
+    periods:
+    - day
+    - month
+  - name: Enterprise
+    access: paid
+    model: hybrid
+    model_how: derived
+    units:
+    - request
+    - seat
+    periods:
+    - day
+    - month
+  - name: Badger Align (Add-On)
+    access: paid
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
+  - name: Badger Lead Routing (Add-On)
+    access: paid
+    model: seat
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - month
+  - name: Badger Insights (Add-On)
+    access: paid
+    model: seat
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - month
+  - name: Badger Scoreboard (Add-On)
+    access: paid
+    model: seat
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - month

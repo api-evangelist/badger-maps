@@ -4,6 +4,7 @@ source:
 - https://zapier.com/apps/badger-maps/integrations
 - https://n8n.io/integrations/badger-maps/
 checked:
+- https://aws.amazon.com/marketplace/
 - https://composio.dev/toolkits/badger-maps
 - https://monid.ai/tools/badger-maps
 - https://n8n.io/integrations/badger-maps/
@@ -1094,6 +1095,21 @@ edges:
   direction: third-party
   category: Databases
   partner_url: https://ninoxdb.de/
+- partner_name: AWS Marketplace
+  partner: amazon-web-services
+  partner_match: aggregator
+  type: marketplace
+  marketplace: aws-marketplace
+  channel: distribution
+  relationship: platform-app
+  direction: provider-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=e82fcd1b-42f4-4fd2-b4d1-4b72ff5e8b6a
+  listing_count: 1
+  apps:
+  - 'Badger Maps: Routing, Mapping & Territory Management for Outside Sales'
+  seller_name: Badger Maps
+  detected_by: sweep-cloud-marketplaces.py
+  detected: '2026-10-13'
 templates:
 - title: Create new HubSpot contacts from new accounts in Badger Maps
   url: https://zapier.com/apps/badger-maps/integrations/hubspot/1747684/create-new-hubspot-contacts-from-new-accounts-in-badger-maps

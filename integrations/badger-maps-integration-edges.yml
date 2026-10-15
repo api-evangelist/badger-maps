@@ -8,6 +8,7 @@ checked:
 - https://composio.dev/toolkits/badger-maps
 - https://monid.ai/tools/badger-maps
 - https://n8n.io/integrations/badger-maps/
+- https://zapier.com/api/v4/apps/
 - https://zapier.com/apps/badger-maps/integrations
 summary: null
 marketplace_apps:
@@ -1110,6 +1111,31 @@ edges:
   seller_name: Badger Maps
   detected_by: sweep-cloud-marketplaces.py
   detected: '2026-10-13'
+- partner_name: Zapier
+  partner: zapier
+  partner_match: aggregator
+  type: marketplace
+  marketplace: zapier-directory
+  channel: ipaas-listing
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://zapier.com/apps/badger-maps/integrations
+  category: null
+  contract_reference:
+    register: Zapier app directory (zapier.com/api/v4/apps)
+    spec_file: null
+    role: ipaas-connector:zapier
+    registered_name: Badger Maps
+    matched_domain: badgermapping.com
+    matched_by: domain
+    detected_by: sweep-workflow-automation.py
+    detected: '2026-10-15'
+    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
+    app_slug: badger-maps
+    beta: false
+    builder: unknown (not in the directory record)
+  detected_by: sweep-workflow-automation.py
+  first_seen: '2026-10-15'
 templates:
 - title: Create new HubSpot contacts from new accounts in Badger Maps
   url: https://zapier.com/apps/badger-maps/integrations/hubspot/1747684/create-new-hubspot-contacts-from-new-accounts-in-badger-maps

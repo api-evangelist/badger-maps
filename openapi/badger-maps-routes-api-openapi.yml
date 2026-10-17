@@ -56,15 +56,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Route:
-      allOf:
-      - $ref: '#/components/schemas/RouteSummary'
-      - type: object
-        properties:
-          waypoints:
-            type: array
-            items:
-              $ref: '#/components/schemas/Waypoint'
     Location:
       type: object
       properties:
@@ -78,16 +69,15 @@ components:
         lng:
           type: number
           format: float
-    RouteSummary:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        route_date:
-          type: string
-          format: date
+    Route:
+      allOf:
+      - $ref: '#/components/schemas/RouteSummary'
+      - type: object
+        properties:
+          waypoints:
+            type: array
+            items:
+              $ref: '#/components/schemas/Waypoint'
     Error:
       type: object
       properties:
@@ -111,14 +101,16 @@ components:
         duration:
           type: integer
           description: Planned stop duration in minutes (modeled).
-  parameters:
-    RouteId:
-      name: route_id
-      in: path
-      required: true
-      description: The route id.
-      schema:
-        type: integer
+    RouteSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        route_date:
+          type: string
+          format: date
   responses:
     Unauthorized:
       description: Authentication is missing or the token is invalid.
@@ -132,6 +124,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    RouteId:
+      name: route_id
+      in: path
+      required: true
+      description: The route id.
+      schema:
+        type: integer
   securitySchemes:
     tokenAuth:
       type: apiKey

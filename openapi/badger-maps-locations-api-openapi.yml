@@ -44,19 +44,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    LocationInput:
-      type: object
-      required:
-      - address
-      properties:
-        address:
-          type: string
-        lat:
-          type: number
-          format: float
-        lng:
-          type: number
-          format: float
     Location:
       type: object
       properties:
@@ -77,6 +64,19 @@ components:
           type: string
         status:
           type: integer
+    LocationInput:
+      type: object
+      required:
+      - address
+      properties:
+        address:
+          type: string
+        lat:
+          type: number
+          format: float
+        lng:
+          type: number
+          format: float
   responses:
     Unauthorized:
       description: Authentication is missing or the token is invalid.

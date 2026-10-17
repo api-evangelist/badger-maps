@@ -90,16 +90,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    AuthResponse:
-      type: object
-      properties:
-        token:
-          type: string
-          description: API token to send in the Authorization header.
-        status:
-          type: string
-        user_id:
-          type: integer
     User:
       type: object
       properties:
@@ -112,6 +102,13 @@ components:
         email:
           type: string
           format: email
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+        status:
+          type: integer
     Profile:
       type: object
       properties:
@@ -140,12 +137,15 @@ components:
           type: object
           description: Profile settings (modeled).
           additionalProperties: true
-    Error:
+    AuthResponse:
       type: object
       properties:
-        detail:
+        token:
           type: string
+          description: API token to send in the Authorization header.
         status:
+          type: string
+        user_id:
           type: integer
   responses:
     Unauthorized:

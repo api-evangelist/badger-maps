@@ -122,6 +122,26 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    Location:
+      type: object
+      properties:
+        id:
+          type: integer
+        address:
+          type: string
+        lat:
+          type: number
+          format: float
+        lng:
+          type: number
+          format: float
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+        status:
+          type: integer
     AccountInput:
       type: object
       required:
@@ -151,26 +171,6 @@ components:
         custom_text:
           type: object
           additionalProperties: true
-    Location:
-      type: object
-      properties:
-        id:
-          type: integer
-        address:
-          type: string
-        lat:
-          type: number
-          format: float
-        lng:
-          type: number
-          format: float
-    Error:
-      type: object
-      properties:
-        detail:
-          type: string
-        status:
-          type: integer
     Account:
       type: object
       properties:
@@ -214,14 +214,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
+    BadRequest:
+      description: The request was invalid or missing required fields.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was invalid or missing required fields.
+    NotFound:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:

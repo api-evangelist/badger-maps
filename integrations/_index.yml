@@ -14,6 +14,7 @@
   evidence: https://zapier.com/apps/badger-maps/integrations/woodpecker/1265844/create-check-ins-in-badger-maps-for-new-prospect-replies-in-woodpeckerco
   template: https://zapier.com/apps/badger-maps/integrations/woodpecker/1265844/create-check-ins-in-badger-maps-for-new-prospect-replies-in-woodpeckerco
   source: template
+  relationship: ipaas-bridge
   status: pending-partner-spec
   arazzo: null
 - slug: badger-maps-create-pipedrive-organizations-from-new-badger-maps-accounts
@@ -28,6 +29,7 @@
   evidence: https://zapier.com/apps/badger-maps/integrations/pipedrive/1332072/create-pipedrive-organizations-from-new-badger-maps-accounts
   template: https://zapier.com/apps/badger-maps/integrations/pipedrive/1332072/create-pipedrive-organizations-from-new-badger-maps-accounts
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: badger-maps-create-new-badger-maps-accounts-from-new-pipedrive-leads-for-efficient-managem
@@ -42,329 +44,7 @@
   evidence: https://zapier.com/apps/badger-maps/integrations/pipedrive/1457448/create-new-badger-maps-accounts-from-new-pipedrive-leads-for-efficient-management
   template: https://zapier.com/apps/badger-maps/integrations/pipedrive/1457448/create-new-badger-maps-accounts-from-new-pipedrive-leads-for-efficient-management
   source: template
-  status: pending-generation
-  arazzo: null
-- slug: badger-maps-leadconnector
-  label: LeadConnector
-  partner_name: LeadConnector
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/badger-maps/integrations/leadconnector
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: badger-maps-copper
-  label: Copper
-  partner: copper
-  partner_name: Copper
-  category: CRM (Customer Relationship Management)
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/badger-maps/integrations/copper
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: badger-maps-microsoft-excel
-  label: Microsoft Excel
-  partner_name: Microsoft Excel
-  category: Microsoft
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/badger-maps/integrations/excel
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: badger-maps-housecall-pro
-  label: Housecall Pro
-  partner: housecall-pro
-  partner_name: Housecall Pro
-  category: Scheduling & Booking
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/badger-maps/integrations/housecall-pro
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: badger-maps-follow-up-boss
-  label: Follow Up Boss
-  partner: follow-up-boss
-  partner_name: Follow Up Boss
-  category: CRM (Customer Relationship Management)
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/badger-maps/integrations/follow-up-boss
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: badger-maps-moxie
-  label: Moxie
-  partner_name: Moxie
-  category: CRM (Customer Relationship Management)
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/badger-maps/integrations/moxie
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: badger-maps-gmail
-  label: Gmail
-  partner: gmail
-  partner_name: Gmail
-  category: Email
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/badger-maps/integrations/gmail
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: badger-maps-capsule-crm
-  label: Capsule CRM
-  partner_name: Capsule CRM
-  category: CRM (Customer Relationship Management)
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/badger-maps/integrations/capsulecrm
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: badger-maps-typeform
-  label: Typeform
-  partner: typeform
-  partner_name: Typeform
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/badger-maps/integrations/typeform
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: badger-maps-mailchimp
-  label: Mailchimp
-  partner: mailchimp
-  partner_name: Mailchimp
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/badger-maps/integrations/mailchimp
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: badger-maps-formidable-forms
-  label: Formidable Forms
-  partner_name: Formidable Forms
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/badger-maps/integrations/formidable
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: badger-maps-mysql
-  label: MySQL
-  partner: mysql
-  partner_name: MySQL
-  category: Databases
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/badger-maps/integrations/mysql
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: badger-maps-trello
-  label: Trello
-  partner: trello
-  partner_name: Trello
-  category: Project Management
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/badger-maps/integrations/trello
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: badger-maps-xero
-  label: Xero
-  partner: xero
-  partner_name: Xero
-  category: Accounting
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/badger-maps/integrations/xero
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: badger-maps-smartoffice
-  label: SmartOffice
-  partner_name: SmartOffice
-  category: CRM (Customer Relationship Management)
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/badger-maps/integrations/smartoffice
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: badger-maps-suitedash
-  label: SuiteDash
-  partner_name: SuiteDash
-  category: Project Management
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/badger-maps/integrations/suitedash
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: badger-maps-activecampaign
-  label: ActiveCampaign
-  partner: activecampaign
-  partner_name: ActiveCampaign
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/badger-maps/integrations/activecampaign
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: badger-maps-agencybloc
-  label: AgencyBloc
-  partner_name: AgencyBloc
-  category: Sales & CRM
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/badger-maps/integrations/agencybloc
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: badger-maps-fathom
-  label: Fathom
-  partner_name: Fathom
-  category: AI Meeting Assistants
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/badger-maps/integrations/fathom
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: badger-maps-spotify
-  label: Spotify
-  partner: spotify
-  partner_name: Spotify
-  category: Video & Audio
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/badger-maps/integrations/spotify
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: badger-maps-sql-server
-  label: SQL Server
-  partner_name: SQL Server
-  category: Databases
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/badger-maps/integrations/sql-server
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: badger-maps-quickbase
-  label: Quickbase
-  partner_name: Quickbase
-  category: App Builder
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/badger-maps/integrations/quickbase
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: badger-maps-salesforce
-  label: Salesforce
-  partner: salesforce
-  partner_name: Salesforce
-  category: CRM (Customer Relationship Management)
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/badger-maps/integrations/salesforce
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: badger-maps-twilio
-  label: Twilio
-  partner: twilio
-  partner_name: Twilio
-  category: Phone & SMS
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/badger-maps/integrations/twilio
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: badger-maps-ringcentral
-  label: RingCentral
-  partner: ringcentral
-  partner_name: RingCentral
-  category: Phone & SMS
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/badger-maps/integrations/ringcentral
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: badger-maps-tidycal
-  label: TidyCal
-  partner_name: TidyCal
-  category: Calendar
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/badger-maps/integrations/tidycal
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: badger-maps-facebook-messenger
-  label: Facebook Messenger
-  partner_name: Facebook Messenger
-  category: Facebook
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/badger-maps/integrations/facebook-messenger
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: badger-maps-ninox
-  label: Ninox
-  partner: ninox
-  partner_name: Ninox
-  category: Databases
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/badger-maps/integrations/ninox
-  source: edge
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: badger-maps-aws-marketplace
@@ -403,4 +83,358 @@
     beta: false
     builder: unknown (not in the directory record)
   status: not-a-workflow
+  arazzo: null
+- slug: badger-maps-leadconnector
+  label: LeadConnector
+  partner_name: LeadConnector
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/badger-maps/integrations/leadconnector
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: badger-maps-copper
+  label: Copper
+  partner: copper
+  partner_name: Copper
+  category: CRM (Customer Relationship Management)
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/badger-maps/integrations/copper
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: badger-maps-microsoft-excel
+  label: Microsoft Excel
+  partner_name: Microsoft Excel
+  category: Microsoft
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/badger-maps/integrations/excel
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: badger-maps-housecall-pro
+  label: Housecall Pro
+  partner: housecall-pro
+  partner_name: Housecall Pro
+  category: Scheduling & Booking
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/badger-maps/integrations/housecall-pro
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: badger-maps-follow-up-boss
+  label: Follow Up Boss
+  partner: follow-up-boss
+  partner_name: Follow Up Boss
+  category: CRM (Customer Relationship Management)
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/badger-maps/integrations/follow-up-boss
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: badger-maps-moxie
+  label: Moxie
+  partner_name: Moxie
+  category: CRM (Customer Relationship Management)
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/badger-maps/integrations/moxie
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: badger-maps-gmail
+  label: Gmail
+  partner: gmail
+  partner_name: Gmail
+  category: Email
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/badger-maps/integrations/gmail
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: badger-maps-capsule-crm
+  label: Capsule CRM
+  partner: capsule-crm
+  partner_name: Capsule CRM
+  category: CRM (Customer Relationship Management)
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/badger-maps/integrations/capsulecrm
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: badger-maps-typeform
+  label: Typeform
+  partner: typeform
+  partner_name: Typeform
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/badger-maps/integrations/typeform
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: badger-maps-mailchimp
+  label: Mailchimp
+  partner: mailchimp
+  partner_name: Mailchimp
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/badger-maps/integrations/mailchimp
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: badger-maps-formidable-forms
+  label: Formidable Forms
+  partner_name: Formidable Forms
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/badger-maps/integrations/formidable
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: badger-maps-mysql
+  label: MySQL
+  partner: mysql
+  partner_name: MySQL
+  category: Databases
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/badger-maps/integrations/mysql
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: badger-maps-trello
+  label: Trello
+  partner: trello
+  partner_name: Trello
+  category: Project Management
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/badger-maps/integrations/trello
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: badger-maps-xero
+  label: Xero
+  partner: xero
+  partner_name: Xero
+  category: Accounting
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/badger-maps/integrations/xero
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: badger-maps-smartoffice
+  label: SmartOffice
+  partner_name: SmartOffice
+  category: CRM (Customer Relationship Management)
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/badger-maps/integrations/smartoffice
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: badger-maps-suitedash
+  label: SuiteDash
+  partner_name: SuiteDash
+  category: Project Management
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/badger-maps/integrations/suitedash
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: badger-maps-activecampaign
+  label: ActiveCampaign
+  partner: activecampaign
+  partner_name: ActiveCampaign
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/badger-maps/integrations/activecampaign
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: badger-maps-agencybloc
+  label: AgencyBloc
+  partner_name: AgencyBloc
+  category: Sales & CRM
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/badger-maps/integrations/agencybloc
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: badger-maps-fathom
+  label: Fathom
+  partner_name: Fathom
+  category: AI Meeting Assistants
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/badger-maps/integrations/fathom
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: badger-maps-spotify
+  label: Spotify
+  partner: spotify
+  partner_name: Spotify
+  category: Video & Audio
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/badger-maps/integrations/spotify
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: badger-maps-sql-server
+  label: SQL Server
+  partner: microsoft-sql-server
+  partner_name: SQL Server
+  category: Databases
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/badger-maps/integrations/sql-server
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: badger-maps-quickbase
+  label: Quickbase
+  partner: quickbase
+  partner_name: Quickbase
+  category: App Builder
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/badger-maps/integrations/quickbase
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: badger-maps-salesforce
+  label: Salesforce
+  partner: salesforce
+  partner_name: Salesforce
+  category: CRM (Customer Relationship Management)
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/badger-maps/integrations/salesforce
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: badger-maps-twilio
+  label: Twilio
+  partner: twilio
+  partner_name: Twilio
+  category: Phone & SMS
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/badger-maps/integrations/twilio
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: badger-maps-ringcentral
+  label: RingCentral
+  partner: ringcentral
+  partner_name: RingCentral
+  category: Phone & SMS
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/badger-maps/integrations/ringcentral
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: badger-maps-tidycal
+  label: TidyCal
+  partner_name: TidyCal
+  category: Calendar
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/badger-maps/integrations/tidycal
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: badger-maps-facebook-messenger
+  label: Facebook Messenger
+  partner_name: Facebook Messenger
+  category: Facebook
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/badger-maps/integrations/facebook-messenger
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: badger-maps-ninox
+  label: Ninox
+  partner: ninox
+  partner_name: Ninox
+  category: Databases
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/badger-maps/integrations/ninox
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
   arazzo: null

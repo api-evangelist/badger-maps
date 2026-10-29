@@ -1,4 +1,4 @@
-# Badger Maps (badger-maps)
+# Badger Maps
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,142 +64,158 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Badger Maps is field sales route planning, mapping, and CRM software for outside sales and field teams - it optimizes daily driving routes, maps and filters accounts on a territory, captures check-ins, and reports on rep activity. Badger Maps also exposes a token-authenticated REST API (base `https://badgerapis.badgermapping.com/api/2`) that lets teams programmatically manage accounts (customers), account locations, routes, check-ins, and users, and sync data with CRMs and other systems. API/Developer Key access is included with paid plans (max 25k requests per day, per team); the key must be enabled by contacting Badger Maps support.
+Badger Maps is field sales route planning, mapping, and CRM software for outside sales and field teams - it optimizes daily driving routes, maps and filters accounts on a territory, captures check-ins, and reports on rep activity. Badger Maps also exposes a token-authenticated REST API (base https://badgerapis.badgermapping.com/api/2) that lets teams programmatically manage accounts (customers), account locations, routes, check-ins, and users, and sync data with CRMs and other systems. API/Developer Key access is included with paid plans (max 25k requests per day, per team); the key must be enabled by contacting Badger Maps support.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/badger-maps/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/badger-maps/refs/heads/main/apis.yml)
+**Areas:** Field Sales · Route Planning · Mapping · CRM · Sales Enablement · Territory Management
 
-## Tags
+## Badger Maps on APIs.io
 
-- Field Sales
-- Route Planning
-- Mapping
-- CRM
-- Sales Enablement
-- Territory Management
+Everything profiled for Badger Maps is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/badger-maps/](https://apis.io/providers/badger-maps/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (5)
 
-- **Created:** 2026-07-04
-- **Modified:** 2026-07-04
+- [Badger Maps Accounts API](https://apis.io/apis/badger-maps/badger-maps-accounts-api/) — Accounts (customers) - the businesses and contacts a rep maps and visits.
+- [Badger Maps Check-Ins API](https://apis.io/apis/badger-maps/badger-maps-check-ins-api/) — Timestamped activity logs recorded against an account (the /appointments/ resource).
+- [Badger Maps Locations API](https://apis.io/apis/badger-maps/badger-maps-locations-api/) — Physical, geocoded locations attached to an account.
+- [Badger Maps Routes API](https://apis.io/apis/badger-maps/badger-maps-routes-api/) — Optimized driving routes and their ordered waypoints.
+- [Badger Maps Users API](https://apis.io/apis/badger-maps/badger-maps-users-api/) — Authentication, the authenticated user profile, and user search.
 
-## APIs
+### Published properties
 
-### Badger Maps Accounts API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-List, create, retrieve, update, and delete accounts (called customers in the API) - the businesses and contacts a rep maps and visits. Accounts carry name, address, contact details, geocoded location(s), an account owner, and custom data fields, and are the primary object synced with CRMs.
+#### AsyncAPI (1)
 
-- **Human URL:** [https://badgerupdatedapi.docs.apiary.io/](https://badgerupdatedapi.docs.apiary.io/)
-- **Base URL:** `https://badgerapis.badgermapping.com/api/2`
+Event-driven and webhook contracts.
 
-#### Tags
+- [Badger Maps Webhooks](https://apis.io/asyncapis/badger-maps/badger-maps-webhooks/)
 
-- Accounts
-- Customers
-- CRM
+#### MCP servers (1)
 
-#### Properties
+Model Context Protocol servers that expose the API to agents.
 
-- [Documentation](https://badgerupdatedapi.docs.apiary.io/)
-- [API Reference](https://badgerupdatedapi.docs.apiary.io/#reference/accounts)
-- [OpenAPI](openapi/badger-maps-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/badger-maps.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/badger-maps.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [badger-maps](https://apis.io/servers/badger-maps/badger-maps/)
 
-### Badger Maps Locations API
+#### Agentic access (1)
 
-Update the physical locations attached to an account - an account can have one or more addresses that Badger geocodes to latitude/longitude for mapping and routing. Correcting an address or supplying explicit coordinates re-pins the account on the map.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- **Human URL:** [https://badgerupdatedapi.docs.apiary.io/](https://badgerupdatedapi.docs.apiary.io/)
-- **Base URL:** `https://badgerapis.badgermapping.com/api/2`
+- [Badger Maps Agentic Access](https://apis.io/agentic-access/badger-maps/badger-maps-agentic-access/)
 
-#### Tags
+#### Collections (6)
 
-- Locations
-- Geocoding
-- Addresses
+Postman and Open Collection request collections.
 
-#### Properties
+- [Badger Maps API](https://apis.io/collections/badger-maps/open-badger-maps/)
+- [Badger Maps Accounts API](https://apis.io/collections/badger-maps/open-badger-maps-accounts-api/)
+- [Badger Maps Accounts Check-Ins API](https://apis.io/collections/badger-maps/open-badger-maps-check-ins-api/)
+- [Badger Maps Accounts Locations API](https://apis.io/collections/badger-maps/open-badger-maps-locations-api/)
+- [Badger Maps Accounts Routes API](https://apis.io/collections/badger-maps/open-badger-maps-routes-api/)
+- [Badger Maps Accounts Users API](https://apis.io/collections/badger-maps/open-badger-maps-users-api/)
 
-- [API Reference](https://badgerupdatedapi.docs.apiary.io/#reference/locations)
-- [OpenAPI](openapi/badger-maps-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/badger-maps.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/badger-maps.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Overlays (5)
 
-### Badger Maps Check-Ins API
+OpenAPI overlays, including conversational phrasing for each operation.
 
-List and create check-ins (served under the `/appointments/` resource) - the timestamped logs a rep records against an account after a visit or call, carrying a type, free-text comments, the author, and a log datetime. Check-ins are the activity feed that powers reporting and CRM sync.
+- [Badger Maps Accounts Api Overlay](https://apis.io/overlays/badger-maps/badger-maps-accounts-api-overlay/)
+- [Badger Maps Check Ins Api Overlay](https://apis.io/overlays/badger-maps/badger-maps-check-ins-api-overlay/)
+- [Badger Maps Locations Api Overlay](https://apis.io/overlays/badger-maps/badger-maps-locations-api-overlay/)
+- [Badger Maps Routes Api Overlay](https://apis.io/overlays/badger-maps/badger-maps-routes-api-overlay/)
+- [Badger Maps Users Api Overlay](https://apis.io/overlays/badger-maps/badger-maps-users-api-overlay/)
 
-- **Human URL:** [https://badgerupdatedapi.docs.apiary.io/](https://badgerupdatedapi.docs.apiary.io/)
-- **Base URL:** `https://badgerapis.badgermapping.com/api/2`
+#### Security (2)
 
-#### Tags
+Authentication, trust centre, and vulnerability disclosure.
 
-- Check-Ins
-- Appointments
-- Activity
+- [Badger Maps Authentication](https://apis.io/security/badger-maps/badger-maps-authentication/)
+- [Badger Maps Domain Security](https://apis.io/security/badger-maps/badger-maps-domain-security/)
 
-#### Properties
+#### Plans and pricing (1)
 
-- [API Reference](https://badgerupdatedapi.docs.apiary.io/#reference/check-ins)
-- [OpenAPI](openapi/badger-maps-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/badger-maps.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/badger-maps.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Published plans, tiers and prices.
 
-### Badger Maps Routes API
+- [Badger Maps Plans Pricing](https://apis.io/plans/badger-maps/badger-maps-plans-pricing/)
 
-List a rep's optimized routes and retrieve a single route with its ordered waypoints - each waypoint references an account location, its position in the sequence, and timing details. Routes are the optimized driving plans Badger generates across a set of accounts.
+#### Rate limits (1)
 
-- **Human URL:** [https://badgerupdatedapi.docs.apiary.io/](https://badgerupdatedapi.docs.apiary.io/)
-- **Base URL:** `https://badgerapis.badgermapping.com/api/2`
+Published request limits.
 
-#### Tags
+- [Badger Maps Rate Limits](https://apis.io/rate-limits/badger-maps/badger-maps-rate-limits/)
 
-- Routes
-- Route Optimization
-- Waypoints
+#### FinOps (1)
 
-#### Properties
+What the API costs to run, by operation.
 
-- [API Reference](https://badgerupdatedapi.docs.apiary.io/#reference/routes)
-- [OpenAPI](openapi/badger-maps-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/badger-maps.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/badger-maps.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Badger Maps Finops](https://apis.io/finops/badger-maps/badger-maps-finops/)
 
-### Badger Maps Users API
+## Where to find this API
 
-Authenticate a user to obtain an API token, retrieve the authenticated user profile (company, settings, and the custom data-field schema), and search for managed users by email or ID. User IDs are required to own accounts and scope routes and check-ins across a managed team.
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- **Human URL:** [https://badgerupdatedapi.docs.apiary.io/](https://badgerupdatedapi.docs.apiary.io/)
-- **Base URL:** `https://badgerapis.badgermapping.com/api/2`
-
-#### Tags
-
-- Users
-- Profiles
-- Authentication
-
-#### Properties
-
-- [API Reference](https://badgerupdatedapi.docs.apiary.io/#reference/users)
-- [OpenAPI](openapi/badger-maps-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/badger-maps.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/badger-maps.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Authentication
-
-The API uses token authentication. Send an `Authorization: Token <api_key>` header on every request. The API/Developer Key must be enabled by Badger Maps support (support@badgermapping.com) and is included with paid Business and Enterprise seats, capped at 25,000 requests per day per team.
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/BadgerMaps)
-- [LinkedIn](https://www.linkedin.com/company/badger-maps)
 - [Website](https://www.badgermapping.com)
 - [Documentation](https://badgerupdatedapi.docs.apiary.io/)
-- [Plans](plans/badger-maps-plans-pricing.yml)
-- [Rate Limits](rate-limits/badger-maps-rate-limits.yml)
-- [Fin Ops](finops/badger-maps-finops.yml)
+- [Getting started](https://badgerupdatedapi.docs.apiary.io/#introduction/authorization)
+- [API reference](https://badgerupdatedapi.docs.apiary.io/#reference)
+- [Pricing](https://www.badgermapping.com/pricing/)
+- [Sign up](https://www.badgermapping.com/free-trial/)
+- [Support](https://www.badgermapping.com/support/)
+- [Blog](https://www.badgermapping.com/blog/)
+- [Terms of service](https://www.badgermapping.com/terms-of-use/)
+- [Privacy policy](https://www.badgermapping.com/privacy-policy/)
+- [GitHub](https://github.com/BadgerMaps)
+- [Status](https://status.badgermapping.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 55.6** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 61.3 |
+| Contract governance | 4.5 |
+| Operational transparency | 57.9 |
+| Developer ergonomics | 48.2 |
+| Access clarity | 76.3 |
+
+**Agent readiness 28.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/badger-maps/](https://apis.io/providers/badger-maps/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Badger Maps: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/badger-maps/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
